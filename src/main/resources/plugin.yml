@@ -1,0 +1,14 @@
+name: EClean
+version: ${version}
+main: com.e404.clean.EClean
+api-version: 1.13
+authors: [ 404E ]
+commands:
+  eclean:
+    description: "插件主命令"
+    aliases:
+      - ec
+permissions:
+  eclean.admin:
+    default: op
+    description: 允许使用插件管理指令

@@ -1,0 +1,146 @@
+# 消息的前缀
+prefix: "&7[&2清理&7]"
+
+# debug
+# 若设置为true则会在后台输出检查的详细信息
+debug: false
+
+# 每次清理的间隔时长, 单位秒
+duration: 600
+
+# 清理前的消息
+# 格式 时长: 对应时长的消息
+# 如 60: 将在1分钟后清理实体
+message:
+  60: "&f将在1分钟后进行清理"
+  30: "&f将在30秒后进行清理"
+  10: "&f将在10秒后进行清理"
+  0: "&f正在清理"
+
+# 清理'有生命的'实体
+# 比如僵尸或者牛
+# 展示框, 雪球等就不包含在内
+living:
+  # 设置为true以启用
+  enable: true
+
+  # 禁用的世界(不支持正则)
+  disable_world:
+    - "不清理的世界"
+
+  # 清理结束后的通知
+  finish: "&a生物清理完成, 已清理{clean}/{all}"
+
+  settings:
+    # 若设置为true则清理被命名的生物
+    # 否则不清理清被命名的生物
+    name: false
+    # 若设置为true则清理拴绳拴住的生物
+    # 否则不清理拴绳拴住的生物
+    lead: false
+    # 若设置为true则清理乘骑中的生物(比如船上的生物)
+    # 否则不清理乘骑中的生物
+    mount: false
+
+  # 若设置为true则按黑名单匹配(名字匹配的才清理)
+  # 若设置为false则按白名单匹配(名字匹配的不清理)
+  is_black: true
+
+  # 清理的实体(支持正则)
+  # 此处的实体是清理所有符合settings中条件的实体(不会剩下)
+  # https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+  match:
+    - "BLAZE"
+    - "EVOKER"
+    - "GHAST"
+    - "(GLOW_)?SQUID"
+    - "PHANTOM"
+    - "PILLAGER"
+
+# 清理掉落物
+drop:
+  # 设置为true以启用
+  enable: true
+
+  # 禁用的世界(不支持正则)
+  disable_world:
+    - "不清理的世界"
+
+  # 清理结束后的通知
+  finish: "&a掉落物清理完成, 已清理{clean}/{all}"
+
+  # 若设置为true则按黑名单匹配(名字匹配的才清理)
+  # 若设置为false则按白名单匹配(名字匹配的不清理)
+  is_black: false
+
+  # 掉落物类型(支持正则)
+  # https://hub.spigotmc.org/javadocs/spigot/org/bukkit/material/package-summary.html
+  match:
+    - "DIAMOND[A-Z_]*"
+    - "NETHERITE[A-Z_]*"
+    - "[A-Z_]*SHULKER_BOX"
+    - "[A-Z_]*(HEAD|SKULL)"
+    - "SHULKER_SHELL"
+    - "BEACON"
+    - "(ENCHANTED_)?GOLDEN_APPLE"
+    - "TRIDENT"
+    - "TOTEM_OF_UNDYING"
+    - "ENDER_CHEST"
+    - "DRAGON_EGG"
+    - "ELYTRA"
+
+# 区块检查(密集实体清理)
+chunk:
+  # 设置为true以启用
+  enable: true
+
+  # 禁用的世界(不支持正则)
+  disable_world:
+    - "不清理的世界"
+
+  # 清理结束后的通知
+  finish: "&a密集实体清理完成, 清理{clean}个"
+
+  settings:
+    # 若设置为true则清理被命名的生物
+    # 否则不清理清被命名的生物
+    name: false
+    # 若设置为true则清理拴绳拴住的生物
+    # 否则不清理拴绳拴住的生物
+    lead: false
+    # 若设置为true则清理乘骑中的生物(比如船上的生物)
+    # 否则不清理乘骑中的生物
+    mount: false
+
+  # 未清理的实体提醒
+  # 进行通知所需要的数量(区块中的某种实体数量超过此数量)
+  count: 50
+
+  # 发送消息的格式(仅有权限者会收到)
+  format: "区块{chunk}中{entity}的数量较多({count})"
+
+  # 每区块允许的实体上限(不支持正则)
+  # 格式 实体类型: 上限
+  # 超过上限的实体将会被清理
+  # https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+  limit:
+    # 怪物
+    ZOMBIE: 10
+    SKELETON: 10
+    SPIDER: 2
+    # 动物
+    CHICKEN: 20
+    PIG: 20
+    COW: 20
+    SHEEP: 20
+    # 投掷物
+    EGG: 10
+    ENDER_PEARL: 10
+    EXPERIENCE_ORB: 10
+    FIREBALL: 10
+    FIREWORK: 10
+    SMALL_FIREBALL: 10
+    SNOWBALL: 10
+    ARROW: 10
+    SPECTRAL_ARROW: 10
+    SPLASH_POTION: 10
