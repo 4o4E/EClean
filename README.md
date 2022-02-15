@@ -2,8 +2,8 @@
 
 > 基于BukkitAPI的清理插件, 适用于Spigot或Paper以及其他绝大多数Bukkit的下游分支核心
 
-[![Release](https://img.shields.io/github/v/release/4o4E/EClean)](https://github.com/4o4E/EClean/releases)
-[![Downloads](https://img.shields.io/github/downloads/4o4E/EClean/total)](https://github.com/4o4E/EClean/releases/latest)
+[![Release](https://img.shields.io/github/v/release/4o4E/EClean)](https://github.com/4o4E/EClean/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/4o4E/EClean/total)](https://github.com/4o4E/EClean/releases)
 
 ## 指令
 

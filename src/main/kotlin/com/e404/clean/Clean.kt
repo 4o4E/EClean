@@ -86,6 +86,7 @@ object Clean {
         // 清理
         drop.forEach(Entity::remove)
         c.getString("drop.finish")?.apply {
+            if (trim() == "") return
             val s = placeholder(mapOf(
                 "clean" to drop.size,
                 "all" to all
@@ -151,6 +152,7 @@ object Clean {
         // 清理
         entities.forEach(Entity::remove)
         c.getString("living.finish")?.apply {
+            if (trim() == "") return
             val s = placeholder(mapOf(
                 "clean" to entities.size,
                 "all" to all
@@ -235,6 +237,7 @@ object Clean {
         // 清理
         clean.forEach(Entity::remove)
         c.getString("chunk.finish")?.apply {
+            if (trim() == "") return
             val s = placeholder(mapOf(
                 "clean" to clean.size
             ))

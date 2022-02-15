@@ -28,7 +28,7 @@ living:
   disable_world:
     - "不清理的世界"
 
-  # 清理结束后的通知
+  # 清理结束后的通知(设置为""以禁用)
   finish: "&a生物清理完成, 已清理{clean}/{all}"
 
   settings:
@@ -66,7 +66,7 @@ drop:
   disable_world:
     - "不清理的世界"
 
-  # 清理结束后的通知
+  # 清理结束后的通知(设置为""以禁用)
   finish: "&a掉落物清理完成, 已清理{clean}/{all}"
 
   # 若设置为true则按黑名单匹配(名字匹配的才清理)
@@ -98,7 +98,7 @@ chunk:
   disable_world:
     - "不清理的世界"
 
-  # 清理结束后的通知
+  # 清理结束后的通知(设置为""以禁用)
   finish: "&a密集实体清理完成, 清理{clean}个"
 
   settings:
