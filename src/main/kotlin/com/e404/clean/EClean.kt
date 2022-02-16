@@ -63,7 +63,7 @@ class EClean : JavaPlugin() {
                 .color())
             return true
         }
-        when(args[0].lowercase()) {
+        when (args[0].lowercase()) {
             "clean" -> {
                 Clean.clean()
                 sender.sendMsgWithPrefix("&a清理完成")
@@ -80,7 +80,7 @@ class EClean : JavaPlugin() {
         sender: CommandSender,
         command: Command,
         alias: String,
-        args: Array<out String>
+        args: Array<out String>,
     ): MutableList<String>? {
         if (!sender.hasPermission("eclean.admin")) return null
         if (args.size == 1) return arrayListOf("reload", "clean")
