@@ -1,7 +1,10 @@
 package com.e404.clean
 
-import com.e404.clean.util.*
+import com.e404.clean.util.Log
 import com.e404.clean.util.Log.color
+import com.e404.clean.util.checkPerm
+import com.e404.clean.util.logo
+import com.e404.clean.util.sendMsgWithPrefix
 import org.bstats.bukkit.Metrics
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
@@ -38,9 +41,10 @@ class EClean : JavaPlugin() {
 
     override fun onEnable() {
         instance = this
-        Metrics(instance, 13581)
+        Metrics(instance, 14312)
         Log.info(logo())
         load(null)
+        Update.init()
         Log.info("&aEClean已启用, 作者404E".color())
     }
 
