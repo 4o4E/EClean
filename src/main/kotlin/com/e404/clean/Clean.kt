@@ -246,5 +246,5 @@ object Clean {
         }
     }
 
-    private fun Chunk.info() = """区块x: $x(${x * 16} - ${(x + 1) * 16}), z: $z(${z * 16} - ${(z + 1) * 16})"""
+    fun Chunk.info() = """区块: ($x, $z) 坐标: (${x * 16 + 8}, ${z * 16 + 8})"""
 }

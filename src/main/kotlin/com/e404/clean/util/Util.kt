@@ -4,6 +4,7 @@ import com.e404.clean.EClean
 import com.e404.clean.util.Log.color
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
+import org.bukkit.entity.Player
 
 /**
  * 发送带前缀并且替换&的消息
@@ -47,11 +48,33 @@ fun CommandSender.checkPerm(perm: String): Boolean {
 }
 
 /**
+ * 检查sender是否是玩家, 若不是则发送提醒消息
+ *
+ * @return 若sender是player则返回true
+ */
+fun CommandSender.isPlayer(): Boolean {
+    if (this is Player) return true
+    sendNonPlayer()
+    return false
+}
+
+/**
  * 无权限
  */
-fun CommandSender.sendNoperm() {
+fun CommandSender.sendNoperm() =
     sendMsgWithPrefix("&c无权限")
-}
+
+/**
+ * 非玩家
+ */
+fun CommandSender.sendNonPlayer() =
+    sendMsgWithPrefix("&c此指令仅玩家可用")
+
+/**
+ * 未知指令
+ */
+fun CommandSender.sendUnknow() =
+    sendMsgWithPrefix("&c未知指令")
 
 /**
  * 文本匹配正则列表
