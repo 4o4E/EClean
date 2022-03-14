@@ -14,10 +14,13 @@
 `eclean clean` 立刻执行一次清理(不会有清理前的提示, 在有玩家的服务器中慎用)
 
 `/eclean entity <实体名>` 统计当前世界的实体统计
+
 `/eclean entity <实体名> <世界名>` 统计实体统计
+
 `/eclean entity <实体名> <世界名> <纳入统计所需数量>` 统计实体统计
 
 `/eclean stats` 统计当前所在世界的实体和区块统计
+
 `/eclean stats <世界名>` 统计实体和区块统计
 
 ## 权限
