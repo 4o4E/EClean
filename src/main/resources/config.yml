@@ -117,7 +117,7 @@ chunk:
   count: 50
 
   # 发送消息的格式(仅有权限者会收到)
-  format: "区块{chunk}中{entity}的数量较多({count})"
+  format: "{chunk}中{entity}的数量较多({count})"
 
   # 每区块允许的实体上限(不支持正则)
   # 格式 实体类型: 上限
