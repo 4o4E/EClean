@@ -45,6 +45,10 @@
 
 [配置文件](src/main/resources/config.yml) 中所有的配置项均有注释描述用法和含义
 
+## 下载
+
+[releases](https://github.com/4o4E/EClean/releases/latest)
+
 ## Bstats
 
 ![bstats](https://bstats.org/signatures/bukkit/EClean.svg)
