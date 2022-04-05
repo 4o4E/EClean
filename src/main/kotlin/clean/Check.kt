@@ -1,11 +1,11 @@
-package com.e404.clean
+package top.e404.eclean.clean
 
-import com.e404.clean.Clean.info
-import com.e404.clean.util.Log.color
-import com.e404.clean.util.sendMsgWithPrefix
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.EntityType
+import top.e404.eclean.clean.Clean.info
+import top.e404.eclean.util.color
+import top.e404.eclean.util.sendMsgWithPrefix
 
 /**
  * 检查世界实体
