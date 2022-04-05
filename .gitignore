@@ -2,6 +2,7 @@
 .idea
 build
 jar
+gradle
 gradle.properties
 gradlew
 gradlew.bat
