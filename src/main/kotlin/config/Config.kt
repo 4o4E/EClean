@@ -9,5 +9,6 @@ object Config : AbstractConfig("config.yml") {
     override fun YamlConfiguration.onLoad() {
         getString("prefix")?.also { prefix = it }
         duration = getLong("duration")
+        debug = getBoolean("debug")
     }
 }

@@ -5,9 +5,9 @@ api-version: 1.13
 authors: [ 404E ]
 commands:
   eclean:
-    description: "插件主命令"
+    description: 插件主命令
     aliases:
-      - ec
+      - ecl
 permissions:
   eclean.admin:
     default: op

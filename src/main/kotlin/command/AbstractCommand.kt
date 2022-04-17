@@ -56,7 +56,7 @@ abstract class AbstractCommand(
      * @since 1.0.0
      */
     fun hasPerm(sender: CommandSender): Boolean {
-        return !permission.any { !sender.hasPermission(it) }
+        return permission.all { sender.hasPermission(it) }
     }
 
     /**

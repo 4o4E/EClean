@@ -14,13 +14,13 @@ object Clean : AbstractCommand(
     false,
     "eclean.admin"
 ) {
-    override val help = """&a/ec clean &f立刻执行一次清理(执行清理通知, 按照配置文件中的规则)
-        |&a/ec clean entity &f立刻执行一次实体清理(执行清理通知, 按照配置文件中的规则)
-        |&a/ec clean entity <世界名> &f立刻在指定世界执行一次实体清理(&c不&f执行清理通知, 按照配置文件中的规则)
-        |&a/ec clean drop &f立刻执行一次掉落物清理(执行清理通知, 按照配置文件中的规则)
-        |&a/ec clean drop <世界名> &f立刻在指定世界执行一次掉落物清理(&c不&f执行清理通知, 按照配置文件中的规则)
-        |&a/ec clean chunk &f立刻执行一次密集实体清理(执行清理通知, 按照配置文件中的规则)
-        |&a/ec clean chunk <世界名> &f立刻在指定世界执行一次密集实体清理(&c不&f执行清理通知, 按照配置文件中的规则)
+    override val help = """&a/eclean clean &f立刻执行一次清理(执行清理通知, 按照配置文件中的规则)
+        |&a/eclean clean entity &f立刻执行一次实体清理(执行清理通知, 按照配置文件中的规则)
+        |&a/eclean clean entity <世界名> &f立刻在指定世界执行一次实体清理(&c不&f执行清理通知, 按照配置文件中的规则)
+        |&a/eclean clean drop &f立刻执行一次掉落物清理(执行清理通知, 按照配置文件中的规则)
+        |&a/eclean clean drop <世界名> &f立刻在指定世界执行一次掉落物清理(&c不&f执行清理通知, 按照配置文件中的规则)
+        |&a/eclean clean chunk &f立刻执行一次密集实体清理(执行清理通知, 按照配置文件中的规则)
+        |&a/eclean clean chunk <世界名> &f立刻在指定世界执行一次密集实体清理(&c不&f执行清理通知, 按照配置文件中的规则)
     """.trimMargin().color()
 
     private val arg = listOf("entity", "drop", "chunk")

@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.e404"
-version = "1.0.5"
+version = "1.0.6"
 
 repositories {
     maven(url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
@@ -26,7 +26,7 @@ tasks.withType<KotlinCompile>() {
 
 tasks.shadowJar {
     archiveFileName.set("${project.name}-${project.version}.jar")
-    relocate("org.bstats", "com.e404.clean.bstats")
+    relocate("org.bstats", "top.e404.clean.bstats")
     exclude("META-INF/*")
     doFirst {
         for (file in File("jar").listFiles() ?: arrayOf()) {

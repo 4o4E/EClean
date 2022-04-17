@@ -15,7 +15,7 @@ object Reload : AbstractCommand(
 ) {
     private val s1 = "&c配置文件`config.yml`格式错误".color()
     private val s2 = "&c计划清理任务时出现异常".color()
-    override val help = "&a/ec reload &f重载插件".color()
+    override val help = "&a/eclean reload &f重载插件".color()
     override fun onCommand(sender: CommandSender, args: Array<out String>) {
         try {
             Config.load(sender)
