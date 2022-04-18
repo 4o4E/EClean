@@ -8,6 +8,7 @@ object CommandManager : AbstractCommandManager(
         Reload,
         Clean,
         Stats,
-        EntityStats
+        EntityStats,
+        Trash
     )
 )
