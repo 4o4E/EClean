@@ -8,10 +8,6 @@ commands:
     description: 插件主命令
     aliases:
       - ecl
-  trash:
-    description: 打开垃圾桶
-    aliases:
-      - ljt
 permissions:
   eclean.admin:
     default: op

@@ -35,9 +35,13 @@
 
 `eclean stats <世界名>` 统计实体和区块统计
 
+`eclean trash` 打开垃圾桶
+
 ## 权限
 
 `eclean.admin` 使用插件指令
+
+`eclean.trash` 打开垃圾桶
 
 ## 配置
 
