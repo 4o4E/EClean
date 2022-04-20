@@ -2,9 +2,13 @@
 
 # [EClean](https://github.com/4o4E/EClean)
 
-> 基于BukkitAPI的清理插件, 适用于Spigot和Paper等Bukkit的下游分支核心
+> 基于BukkitAPI的清理插件, 适用于Spigot和Paper等Bukkit的下游分支核心, 支持1.8.x-1.18.x, 1.8和1.18经过测试
 >
-> 同时支持插件和mod的混合核心(如`Arclight`/`Mohist`/`CatServer`等)不在支持范围内, 若需要使用可自行尝试, 我不提供相关支持
+> 支持设置 `清理间隔`, `清理前通知`, `忽略的世界`, `生物/实体/掉落物类型匹配(支持正则)`, `设置拴绳拴住/乘骑中/捡起物品的实体是否清理`, `密集实体检测`
+>
+> 同时支持插件和mod的混合核心(如`Arclight`/`Mohist`/`CatServer`等)不在支持范围内, 若一定要使用请不要在此反馈问题
+>
+> 低版本请自行转码配置文件
 
 [![Release](https://img.shields.io/github/v/release/4o4E/EClean?label=Release)](https://github.com/4o4E/EClean/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/4o4E/EClean/total?label=Download)](https://github.com/4o4E/EClean/releases)
@@ -53,6 +57,7 @@
 2022.04.05 - 1.0.5 添加手动执行清理的指令
 2022.04.17 - 1.0.6 修改指令格式, 更换指令别名`ec`至`ecl`以避免与其他指令冲突导致的无法补全
 2022.04.19 - 1.0.7 添加垃圾桶功能 `eclean trash`
+2022.04.20 - 1.0.8 优化插件, 添加更新检查开关
 ```
 
 ## Bstats
