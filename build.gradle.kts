@@ -5,7 +5,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "7.0.0"
 }
 
-group = "com.e404"
+group = "top.e404"
 version = "1.0.8"
 
 repositories {

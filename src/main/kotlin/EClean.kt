@@ -34,6 +34,6 @@ class EClean : JavaPlugin() {
 
     override fun onDisable() {
         Bukkit.getScheduler().cancelTasks(this)
-        info("&a已卸载 感谢使用".color())
+        info("&a已卸载, 感谢使用".color())
     }
 }
