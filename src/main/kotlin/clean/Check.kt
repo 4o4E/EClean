@@ -14,7 +14,7 @@ object Check {
     fun CommandSender.sendWorldStats(worldName: String) {
         val world = Bukkit.getWorld(worldName)
         if (world == null) {
-            sendMsgWithPrefix("&c不存在名为&e${world}&c的世界")
+            sendMsgWithPrefix("&c不存在名为&e$worldName&c的世界")
             return
         }
         val entity = world
