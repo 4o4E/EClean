@@ -72,4 +72,4 @@
 
 ## Bstats
 
-![bstats](https://bstats.org/signatures/bukkit/EClean.svg)
+[![bstats](https://bstats.org/signatures/bukkit/EClean.svg)](https://bstats.org/plugin/bukkit/EClean)
