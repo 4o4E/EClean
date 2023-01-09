@@ -1,0 +1,91 @@
+prefix: "&7[&aEClean&7]"
+debug_prefix: "&7[&6ECleanDebug&7]"
+
+debug:
+  console_enable: "&f已临时(修改config.yml永久设置)&a启用&bDebug&f, 下次重启前你将会收到&bDebug&f消息, 再使用一次此指令以&c禁用"
+  console_disable: "&f已临时(修改config.yml永久设置)&c禁用&bDebug&f, 下次重启前你不会收到&bDebug&f消息, 再使用一次此指令以&a启用"
+  player_enable: "&f已&a启用&bDebug&f, 你将会收到&bDebug&f消息, 再使用一次此指令以&c禁用"
+  player_disable: "&f已&c禁用&bDebug&f, 你不会收到&bDebug&f消息, 再使用一次此指令以&a启用"
+
+  spacing: ","
+  bool:
+    true: ""
+    false: "不"
+  clean: "{bool}清理{type}(数量{count})"
+  chunk_entity_data: "{type}: {limit}"
+  chunk_clean: "清理密集生物{type}(数量{count})位于{chunk}(设置的上限为{limit})"
+  start:
+    drop: "开始清理{name}的掉落物"
+    chunk: |
+      开始检查密集实体
+      启用检查的世界: [{world}]
+      {name}清理被命名的生物
+      {lead}清理拴绳拴住的生物
+      {mount}清理乘骑中的生物
+      限制实体包含: [{limit}]
+    living: |
+      开始清理生物
+      启用生物清理的世界: [{world}]
+      {name}清理被命名的生物
+      {lead}清理拴绳拴住的生物
+      {mount}清理乘骑中的生物
+      {black}匹配[{match}]的生物将会被清理
+    clean: |
+      开始清理掉落物
+      启用掉落物清理的世界: [{world}]
+      {black}匹配[{match}]的掉落物将会被清理
+
+warn:
+  out_of_range: "清理前的消息`{message}`&e设置的时长超过清理间隔`{duration}`&e, 请在设置中修改(此消息将不会被发送)"
+  invalid_number: "清理消息的时长只能是小于清理间隔的数字"
+
+message:
+  noperm: "&c无权限"
+  non_player: "&c仅玩家可用"
+  unknown_command: "&c未知指令"
+  invalid_args: "&c无效参数"
+  invalid_world: "&c不存在名为`{world}`的世界"
+  invalid_number: "{number}不是有效数字"
+  invalid_config: "&c配置文件`{file}`格式错误"
+  invalid_entity_type: "&e{type}&c不是有效的实体类型"
+
+chunk_info: "区块: ({chunkX}, {chunkZ}) 坐标: ({x}, {z})"
+
+trash:
+  title: "&6垃圾桶, &4关闭后垃圾桶内物品无法找回"
+
+command:
+  reload_done: "&a重载完成"
+  trash_open: "&a已打开垃圾桶&4(关闭后垃圾桶内物品无法找回)"
+  clean_done: "&a共清理&6{count}&a个实体"
+  stats:
+    spacing: "&7, "
+    content: "&f{type}: {count}个"
+    empty: "&c无结果"
+
+    world: |
+      &f世界&a{world}&f共加载区块{count}个(强加载{force}个)
+      &b实体统计信息:
+      {entity}
+    entity: |
+      &f实体&e{type}&f的统计信息
+      {entity}
+  usage:
+    reload: "&a/ecl reload &f重载插件"
+    trash: "&a/ecl trash &f打开垃圾桶"
+    players: "&a/eclean players &f展示玩家及其所在的位置"
+    stats: |
+      &a/ecl stats &f- 统计当前所在世界的实体和区块统计
+      &a/ecl stats <世界名> &f- 统计实体和区块统计
+    entity: |
+      &a/ecl entity <实体名> &f- 统计当前世界每个区块的指定实体
+      &a/ecl entity <实体名> <世界名> &f- 统计指定世界个区块的指定实体
+      &a/ecl entity <实体名> <世界名> <纳入统计所需数量> &f- 统计指定世界个区块的指定实体并隐藏数量不超过指定数量的内容
+    clean: |
+      &a/ecl clean &f立刻执行一次清理(执行清理通知, 按照配置文件中的规则)
+      &a/ecl clean entity &f立刻执行一次实体清理(执行清理通知, 按照配置文件中的规则)
+      &a/ecl clean entity <世界名> &f立刻在指定世界执行一次实体清理(&c不&f执行清理通知, 按照配置文件中的规则)
+      &a/ecl clean drop &f立刻执行一次掉落物清理(执行清理通知, 按照配置文件中的规则)
+      &a/ecl clean drop <世界名> &f立刻在指定世界执行一次掉落物清理(&c不&f执行清理通知, 按照配置文件中的规则)
+      &a/ecl clean chunk &f立刻执行一次密集实体清理(执行清理通知, 按照配置文件中的规则)
+      &a/ecl clean chunk <世界名> &f立刻在指定世界执行一次密集实体清理(&c不&f执行清理通知, 按照配置文件中的规则)

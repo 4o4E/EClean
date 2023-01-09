@@ -1,16 +1,26 @@
 package top.e404.eclean.config
 
-import org.bukkit.configuration.file.YamlConfiguration
+import com.charleskorn.kaml.Yaml
+import kotlinx.serialization.Serializable
+import top.e404.eclean.PL
+import top.e404.eplugin.config.ESerializationConfig
+import top.e404.eplugin.config.JarConfig
 
-object Config : AbstractConfig("config.yml") {
-    var prefix = "&7[&2清理&7]"
-    var debug = false
-    var duration = 600L
-    var update = false
-    override fun YamlConfiguration.onLoad() {
-        getString("prefix")?.also { prefix = it }
-        duration = getLong("duration")
-        debug = getBoolean("debug")
-        update = getBoolean("update")
-    }
-}
+object Config : ESerializationConfig<ConfigData>(
+    plugin = PL,
+    path = "config.yml",
+    default = JarConfig(PL, "config.yml"),
+    serializer = ConfigData.serializer(),
+    format = Yaml.default
+)
+
+@Serializable
+data class ConfigData(
+    var debug: Boolean,
+    var update: Boolean,
+    val duration: Long,
+    val message: Map<Long, String>,
+    val living: LivingConfig,
+    val drop: DropConfig,
+    val chunk: ChunkConfig,
+)

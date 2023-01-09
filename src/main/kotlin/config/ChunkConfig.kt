@@ -1,33 +1,16 @@
 package top.e404.eclean.config
 
-import org.bukkit.configuration.ConfigurationSection
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class ChunkConfig(
     val enable: Boolean,
+    @SerialName("disable_world")
     val disableWorld: List<String>,
-    val name: Boolean,
-    val lead: Boolean,
-    val mount: Boolean,
-    val check: Map<String, Int>,
+    val finish: String,
+    val settings: Settings,
     val count: Int,
     val format: String?,
-) {
-    companion object {
-        @JvmStatic
-        fun ConfigurationSection.getChunkConfig(path: String) =
-            getConfigurationSection(path)!!.let { config ->
-                ChunkConfig(
-                    config.getBoolean("enable"),
-                    config.getStringList("disable_world"),
-                    config.getBoolean("settings.name"),
-                    config.getBoolean("settings.lead"),
-                    config.getBoolean("settings.mount"),
-                    config.getConfigurationSection("limit")!!.let { limit ->
-                        limit.getKeys(false).associateWith { limit.getInt(it) }
-                    },
-                    config.getInt("count"),
-                    getString("format")
-                )
-            }
-    }
-}
+    val limit: Map<String, Int>,
+)

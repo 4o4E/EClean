@@ -1,31 +1,17 @@
 package top.e404.eclean.config
 
-import org.bukkit.configuration.ConfigurationSection
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import top.e404.eplugin.config.serialization.RegexSerialization
 
+@Serializable
 data class LivingConfig(
     val enable: Boolean,
+    @SerialName("disable_world")
     val disableWorld: List<String>,
-    val name: Boolean,
-    val lead: Boolean,
-    val mount: Boolean,
+    val finish: String,
+    val settings: Settings,
+    @SerialName("is_black")
     val black: Boolean,
-    val match: List<String>,
-    val finish: String?,
-) {
-    companion object {
-        @JvmStatic
-        fun ConfigurationSection.getLivingConfig(path: String) =
-            getConfigurationSection(path)!!.let { config ->
-                LivingConfig(
-                    config.getBoolean("enable"),
-                    config.getStringList("disable_world"),
-                    config.getBoolean("settings.name"),
-                    config.getBoolean("settings.lead"),
-                    config.getBoolean("settings.mount"),
-                    config.getBoolean("is_black"),
-                    config.getStringList("match"),
-                    config.getString("finish"),
-                )
-            }
-    }
-}
+    val match: List<@Serializable(RegexSerialization::class) Regex>,
+)

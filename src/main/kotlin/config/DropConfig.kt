@@ -1,25 +1,16 @@
 package top.e404.eclean.config
 
-import org.bukkit.configuration.ConfigurationSection
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import top.e404.eplugin.config.serialization.RegexSerialization
 
+@Serializable
 data class DropConfig(
     val enable: Boolean,
+    @SerialName("disable_world")
     val disableWorld: List<String>,
-    val match: List<String>,
-    val black: Boolean,
     val finish: String?,
-) {
-    companion object {
-        @JvmStatic
-        fun ConfigurationSection.getDropConfig(path: String) =
-            getConfigurationSection(path)!!.let { config ->
-                DropConfig(
-                    config.getBoolean("enable"),
-                    config.getStringList("disable_world"),
-                    config.getStringList("match"),
-                    config.getBoolean("is_black"),
-                    config.getString("finish")
-                )
-            }
-    }
-}
+    @SerialName("is_black")
+    val black: Boolean,
+    val match: List<@Serializable(RegexSerialization::class) Regex>,
+)
