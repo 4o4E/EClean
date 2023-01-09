@@ -33,6 +33,7 @@ tasks {
         relocate("org.bstats", "top.e404.eclean.relocate.bstats")
         relocate("kotlin", "top.e404.eclean.relocate.kotlin")
         relocate("top.e404.eplugin", "top.e404.eclean.relocate.eplugin")
+        relocate("com.charleskorn.kaml", "top.e404.eclean.relocate.kaml")
         exclude("META-INF/*")
         doFirst {
             for (file in File("jar").listFiles() ?: arrayOf()) {
