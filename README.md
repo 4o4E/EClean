@@ -1,5 +1,3 @@
-<div align="center">
-
 # [EClean](https://github.com/4o4E/EClean)
 
 > 基于BukkitAPI的清理插件, 适用于Spigot和Paper等Bukkit的下游分支核心, 支持`1.8.x`-`1.19.x`, `1.8和1.18.x`, `1.19.x`经过测试
@@ -17,8 +15,6 @@
 
 [![Release](https://img.shields.io/github/v/release/4o4E/EClean?label=Release)](https://github.com/4o4E/EClean/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/4o4E/EClean/total?label=Download)](https://github.com/4o4E/EClean/releases)
-
-</div>
 
 ## 指令
 
