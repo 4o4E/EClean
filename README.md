@@ -4,6 +4,9 @@
 >
 > 同时mod实体不在支持范围内, 若一定要使用请不要在此反馈问题
 
+[![Release](https://img.shields.io/github/v/release/4o4E/EClean?label=Release)](https://github.com/4o4E/EClean/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/4o4E/EClean/total?label=Download)](https://github.com/4o4E/EClean/releases)
+
 支持设置
 
 - 清理间隔
@@ -12,9 +15,7 @@
 - 生物/实体/掉落物类型匹配(支持正则)
 - 设置拴绳拴住/乘骑中/捡起物品的实体是否清理
 - 密集实体检测
-
-[![Release](https://img.shields.io/github/v/release/4o4E/EClean?label=Release)](https://github.com/4o4E/EClean/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/4o4E/EClean/total?label=Download)](https://github.com/4o4E/EClean/releases)
+-
 
 ## 指令
 
