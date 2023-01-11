@@ -12,5 +12,8 @@ data class DropConfig(
     val finish: String?,
     @SerialName("is_black")
     val black: Boolean,
+    val enchant: Boolean = false,
+    @SerialName("written_book")
+    val writtenBook: Boolean = false,
     val match: List<@Serializable(RegexSerialization::class) Regex>,
 )

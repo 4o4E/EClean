@@ -72,6 +72,14 @@ drop:
   # 若设置为false则按白名单匹配(名字匹配的不清理)
   is_black: false
 
+  # 若设置为true则不清理带附魔的物品
+  # 若设置为false则清理带附魔的物品
+  enchant: false
+
+  # 若设置为true则不清理写过的书
+  # 若设置为false则清理写过的书
+  written_book: false
+
   # 掉落物类型(支持正则)
   # https://hub.spigotmc.org/javadocs/spigot/org/bukkit/material/package-summary.html
   match:

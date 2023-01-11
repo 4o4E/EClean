@@ -2,16 +2,20 @@ package top.e404.eclean.clean
 
 import org.bukkit.Bukkit
 import org.bukkit.Chunk
+import org.bukkit.Material
 import org.bukkit.World
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Item
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
+import org.bukkit.inventory.meta.BookMeta
 import org.bukkit.scheduler.BukkitTask
 import top.e404.eclean.PL
 import top.e404.eclean.config.*
 import top.e404.eplugin.EPlugin.Companion.color
 import top.e404.eplugin.EPlugin.Companion.placeholder
+import top.e404.eplugin.util.asMutableList
+import top.e404.eplugin.util.mapMutable
 
 object Clean {
     private var tasks = ArrayList<BukkitTask>()
@@ -59,9 +63,7 @@ object Clean {
      */
     fun cleanDrop() {
         if (!dropCfg.enable) return
-        val worlds = Bukkit.getWorlds().filterNot {
-            dropCfg.disableWorld.contains(it.name)
-        }
+        val worlds = Bukkit.getWorlds().asSequence().filterNot { chunkCfg.disableWorld.contains(it.name) }
         val match = dropCfg.match
         val black = dropCfg.black
         PL.debug {
@@ -76,8 +78,7 @@ object Clean {
         val clean = result.sumOf { it.first }
         val all = result.sumOf { it.second }
         val finish = dropCfg.finish
-        if (!finish.isNullOrBlank())
-            PL.broadcastMsg(finish.placeholder("clean" to clean, "all" to all))
+        if (!finish.isNullOrBlank()) PL.broadcastMsg(finish.placeholder("clean" to clean, "all" to all))
     }
 
     /**
@@ -90,17 +91,33 @@ object Clean {
         val match = dropCfg.match
         val black = dropCfg.black
         val items = entities.filterIsInstance<Item>()
-        val clean = items.groupBy {
+        val entries = items.groupBy {
             it.itemStack.type.name
-        }.filter { (type, list) ->
-            type.isMatch(match).let {
-                if (black) it else !it
-            }.also { bool ->
-                PL.debug { Lang["debug.clean", "bool" to Lang["debug.bool.$bool"], "type" to type, "count" to list.size] }
+        }.entries.mapMutable { (k, v) -> k to v.asMutableList() }
+        // 附魔物品
+        if (Config.config.drop.enchant) entries.forEach { (_, v) ->
+            v.removeIf { it.itemStack.itemMeta?.hasEnchants() == true }
+        }
+        // 有内容的书 成书应从黑白名单处添加
+        if (Config.config.drop.writtenBook) entries.forEach { (_, v) ->
+            v.removeIf {
+                val itemStack = it.itemStack
+                if (itemStack.type != Material.WRITABLE_BOOK) return@removeIf false
+                val meta = itemStack.itemMeta as? BookMeta ?: return@removeIf false
+                meta.hasPages()
             }
-        }.flatMap { it.value }
+        }
+        // 黑白名单
+        entries.removeIf { (type, list) ->
+            type.isMatch(match).also { bool ->
+                PL.debug { Lang["debug.clean", "bool" to Lang["debug.bool.$bool"], "type" to type, "count" to list.size] }
+            }.let {
+                if (black) !it else it
+            }
+        }
+        val clean = entries.flatMap { it.second }
         clean.forEach(Item::remove)
-        return Pair(clean.size, items.size)
+        return clean.size to items.size
     }
 
     /**
@@ -108,7 +125,7 @@ object Clean {
      */
     fun cleanLiving() {
         if (!livingCfg.enable) return
-        val worlds = Bukkit.getWorlds().filterNot { livingCfg.disableWorld.contains(it.name) }
+        val worlds = Bukkit.getWorlds().asSequence().filterNot { chunkCfg.disableWorld.contains(it.name) }
         PL.debug {
             Lang[
                 "debug.start.living",
@@ -169,7 +186,7 @@ object Clean {
      */
     fun cleanChunk() {
         if (!chunkCfg.enable) return
-        val worlds = Bukkit.getWorlds().filterNot { chunkCfg.disableWorld.contains(it.name) }
+        val worlds = Bukkit.getWorlds().asSequence().filterNot { chunkCfg.disableWorld.contains(it.name) }
         PL.debug {
             Lang[
                 "debug.start.chunk",
