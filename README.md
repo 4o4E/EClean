@@ -1,4 +1,4 @@
-# EClean
+# [EClean](https://github.com/4o4E/EClean)
 
 > 基于BukkitAPI的清理插件, 适用于Spigot和Paper等Bukkit的下游分支核心, 支持`1.8.x`-`1.19.x`, `1.8和1.18.x`, `1.19.x`经过测试
 >
