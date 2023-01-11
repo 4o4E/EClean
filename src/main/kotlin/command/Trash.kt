@@ -20,6 +20,7 @@ object Trash : ECommand(
     override fun onCommand(sender: CommandSender, args: Array<out String>) {
         val inv = Bukkit.createInventory(null, 54, Lang["trash.title"])
         sender as Player
+        sender.closeInventory()
         sender.openInventory(inv)
         plugin.sendMsgWithPrefix(sender, Lang["command.trash_open"])
     }
