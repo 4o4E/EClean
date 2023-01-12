@@ -18,7 +18,7 @@ import top.e404.eplugin.util.asMutableList
 import top.e404.eplugin.util.mapMutable
 
 object Clean {
-    private var tasks = ArrayList<BukkitTask>()
+    private var task: BukkitTask? = null
     private fun String.isMatch(list: List<Regex>) = list.any { it matches this }
 
     private val chunkCfg: ChunkConfig
@@ -30,26 +30,36 @@ object Clean {
     private val duration: Long
         get() = Config.config.duration
 
+    /**
+     * 计数, 每20tick++
+     */
+    var count = 0L
+        private set
+
+    var lastLiving = 0
+        private set
+    var lastDrop = 0
+        private set
+    var lastChunk = 0
+        private set
+
     fun schedule() {
-        tasks.apply {
-            forEach(BukkitTask::cancel)
-            clear()
-        }
+        count = 0
+        task?.cancel()
         // 清理任务
-        PL.info("&f设置清理任务, 间隔${duration}秒")
-        tasks.add(PL.runTaskTimer(duration * 20, duration * 20, Clean::clean))
-        // 提醒消息
-        Config.config.message.filter { (stamp, message) ->
-            (stamp < duration).also {
-                if (!it) PL.warn(Lang["warn.out_of_range", "message" to message, "duration" to duration])
+        PL.info("&f设置清理任务, 间隔${duration}秒")// 提醒消息
+        Config.config.message.forEach { (delay, message) ->
+            if (delay > duration) PL.warn(Lang["warn.out_of_range", "message" to message, "duration" to duration])
+            else PL.info("&f设置清理前${delay}秒提醒: ${message.color()}")
+        }
+        task = PL.runTaskTimer(20, 20) {
+            count++
+            Config.config.message[(duration - count) * 20]?.let { PL.broadcastMsg(it) }
+            if (count >= duration) {
+                count = 0
+                clean()
             }
-        }.mapNotNull { (delay, msg) ->
-            // 提醒
-            msg.let {
-                PL.info("&f设置清理前${delay}秒提醒: ${it.color()}")
-                PL.runTaskTimer((duration - delay) * 20, duration * 20) { PL.broadcastMsg(it) }
-            }
-        }.forEach(tasks::add)
+        }
     }
 
     fun clean() {
@@ -75,10 +85,10 @@ object Clean {
             ]
         }
         val result = worlds.map { it.cleanDrop() }
-        val clean = result.sumOf { it.first }
+        lastDrop = result.sumOf { it.first }
         val all = result.sumOf { it.second }
         val finish = dropCfg.finish
-        if (!finish.isNullOrBlank()) PL.broadcastMsg(finish.placeholder("clean" to clean, "all" to all))
+        if (!finish.isNullOrBlank()) PL.broadcastMsg(finish.placeholder("clean" to lastDrop, "all" to all))
     }
 
     /**
@@ -138,10 +148,10 @@ object Clean {
             ]
         }
         val result = worlds.map { it.cleanLiving() }
-        val clean = result.sumOf { it.first }
+        lastLiving = result.sumOf { it.first }
         val all = result.sumOf { it.second }
         val finish = livingCfg.finish
-        if (finish.isNotBlank()) PL.broadcastMsg(finish.placeholder(mapOf("clean" to clean, "all" to all)))
+        if (finish.isNotBlank()) PL.broadcastMsg(finish.placeholder(mapOf("clean" to lastLiving, "all" to all)))
     }
 
     /**
@@ -161,22 +171,14 @@ object Clean {
             }
         }.flatMap {
             it.value
-        }.let { list ->
-            // 不清理被命名的生物
-            if (!livingCfg.settings.name) list.filter { it.customName == null }
-            // 清理远离玩家不会消失的生物
-            else list
-        }.let { list ->
-            // 不清理拴绳拴住的生物
-            if (!livingCfg.settings.lead) list.filter { !it.isLeashed }
-            // 清理拴绳拴住的生物
-            else list
-        }.let { list ->
-            // 不清理乘骑中的生物
-            if (!livingCfg.settings.mount) list.filter { !it.isInsideVehicle }
-            // 清理乘骑中的生物
-            else list
-        }
+        }.asMutableList()
+
+        // 命名的生物
+        if (!livingCfg.settings.name) clean.removeIf { it.customName != null }
+        // 拴绳拴住的生物
+        if (!livingCfg.settings.lead) clean.removeIf { it.isLeashed }
+        // 乘骑中的生物
+        if (!livingCfg.settings.mount) clean.removeIf { it.isInsideVehicle }
         clean.forEach(Entity::remove)
         return Pair(clean.size, all.size)
     }
@@ -200,8 +202,9 @@ object Clean {
             ]
         }
         val result = worlds.map { it.cleanChunk() }
+        lastChunk = result.sum()
         Config.config.chunk.finish.also { finish ->
-            if (finish.isNotBlank()) PL.broadcastMsg(finish.placeholder("clean" to result.sum()))
+            if (finish.isNotBlank()) PL.broadcastMsg(finish.placeholder("clean" to lastChunk))
         }
     }
 
