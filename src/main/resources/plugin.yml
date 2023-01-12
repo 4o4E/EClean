@@ -2,6 +2,8 @@ name: EClean
 version: ${version}
 main: top.e404.eclean.EClean
 api-version: 1.13
+softdepend:
+  - PlaceholderAPI
 authors: [ 404E ]
 commands:
   eclean:
