@@ -40,6 +40,14 @@
 - `eclean.admin` 使用插件指令
 - `eclean.trash` 打开垃圾桶
 
+## PlaceholderAPI
+
+- `%eclean_before_next%` - `距离下一次清理的时间, 单位秒`
+- `%eclean_before_next_formatted%` - `距离下一次清理的时间, 格式化的时间`
+- `%eclean_last_drop%` - `上次清理的掉落物数量`
+- `%eclean_last_living%` - `上次清理的生物数量`
+- `%eclean_last_chunk%` - `上次清理的密集实体数量`
+
 ## 配置
 
 插件默认配置见[配置文件](src/main/resources/config.yml), 配置项均有注释描述用法和含义
@@ -73,6 +81,7 @@
 2023.01.09 - 1.0.9 优化插件, 修复kotlin依赖版本冲突导致的插件无法加载, 添加语言文件
 2023.01.10 - 1.0.10 修复插件加载低版本配置文件时报错的问题
 2023.01.11 - 1.0.11 修复玩家打开背包时无法打开垃圾桶的问题, 添加物品清理时关于附魔物品和写过的书的相关设置
+2023.01.12 - 1.0.12 添加papi支持
 ```
 
 ## Bstats
