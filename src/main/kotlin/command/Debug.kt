@@ -16,7 +16,7 @@ object Debug : AbstractDebugCommand(
     "eclean.admin"
 ) {
     override val usage: String
-        get() = Lang["plugin_command.usage.debug"].color()
+        get() = Lang["command.usage.debug"].color()
 
     override fun onCommand(
         sender: CommandSender,
