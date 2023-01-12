@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "top.e404"
-version = "1.0.11"
+version = "1.0.12"
 val epluginVer = "1.0.5"
 
 fun eplugin(module: String, version: String = epluginVer) = "top.e404:eplugin-$module:$version"
@@ -16,13 +16,20 @@ repositories {
     mavenLocal()
     maven(url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     maven(url = "https://oss.sonatype.org/content/groups/public/")
+    // placeholderAPI
+    maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
     mavenCentral()
 }
 
 dependencies {
+    // spigot
+    compileOnly("org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT")
+    // eplugin
     implementation(eplugin("core"))
     implementation(eplugin("serialization"))
-    compileOnly("org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT")
+    implementation(eplugin("hook-placeholderapi"))
+    // placeholderAPI
+    compileOnly("me.clip:placeholderapi:2.11.1")
     // Bstats
     implementation("org.bstats:bstats-bukkit:3.0.0")
 }
