@@ -71,6 +71,7 @@ command:
       &f实体&e{type}&f的统计信息
       {entity}
   usage:
+    debug: "&a/ecl debug &f切换debug消息的接受与否"
     reload: "&a/ecl reload &f重载插件"
     trash: "&a/ecl trash &f打开垃圾桶"
     players: "&a/eclean players &f展示玩家及其所在的位置"
