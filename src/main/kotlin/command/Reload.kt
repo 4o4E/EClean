@@ -48,7 +48,7 @@ object Reload : ECommand(
                 )
                 return@runTaskAsync
             }
-            plugin.sendMsgWithPrefix(sender, Lang["command.usage.reload"])
+            plugin.sendMsgWithPrefix(sender, Lang["command.reload_done"])
         }
     }
 }
