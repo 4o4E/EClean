@@ -28,4 +28,14 @@ object Papi : PapiExpansion(PL, "eclean") {
             else -> null
         }
     }
+
+    private val placeholders = mutableListOf(
+        "%eclean_before_next%",
+        "%eclean_before_next_formatted%",
+        "%eclean_last_drop%",
+        "%eclean_last_living%",
+        "%eclean_last_chunk%",
+    )
+
+    override fun getPlaceholders() = placeholders
 }
