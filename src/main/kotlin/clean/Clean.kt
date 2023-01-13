@@ -54,7 +54,7 @@ object Clean {
         }
         task = PL.runTaskTimer(20, 20) {
             count++
-            Config.config.message[(duration - count) * 20]?.let { PL.broadcastMsg(it) }
+            Config.config.message[duration - count]?.let { PL.broadcastMsg(it) }
             if (count >= duration) {
                 count = 0
                 clean()
