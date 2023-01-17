@@ -39,6 +39,10 @@ warn:
   out_of_range: "清理前的消息`{message}`&e设置的时长超过清理间隔`{duration}`&e, 请在设置中修改(此消息将不会被发送)"
   invalid_number: "清理消息的时长只能是小于清理间隔的数字"
 
+hook:
+  enable: "扫描到依赖{plugin}, 已启用相关支持"
+  disable: "未扫描到依赖{plugin}, 已禁用"
+
 message:
   noperm: "&c无权限"
   non_player: "&c仅玩家可用"
