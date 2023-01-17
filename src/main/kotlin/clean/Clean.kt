@@ -223,15 +223,7 @@ object Clean {
                     // op通知
                     if (list.size > chunkCfg.count) chunkCfg.format?.also { format ->
                         PL.runTask {
-                            PL.broadcastMsg(
-                                format.placeholder(
-                                    mapOf(
-                                        "chunk" to chunk.info(),
-                                        "entity" to type,
-                                        "count" to list.size
-                                    )
-                                )
-                            )
+                            PL.sendOpMsg(format.placeholder("chunk" to chunk.info(), "entity" to type, "count" to list.size))
                         }
                     }
                     return@a emptyList()
