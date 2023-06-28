@@ -1,6 +1,7 @@
 # [EClean](https://github.com/4o4E/EClean)
 
-> 基于BukkitAPI的清理插件, 适用于Spigot和Paper等Bukkit的下游分支核心, 支持`1.8.x`-`1.19.x`, `1.8和1.18.x`, `1.19.x`经过测试
+> 基于BukkitAPI的清理插件, 适用于Spigot和Paper等Bukkit的下游分支核心, 支持`1.8.x`
+> 及以上版本, `1.8和1.18.x`, `1.19.x`, `1.20.x`经过测试
 >
 > mod实体不在支持范围内, 若一定要使用请不要在此反馈问题
 
