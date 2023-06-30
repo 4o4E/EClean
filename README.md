@@ -8,6 +8,8 @@
 [![Release](https://img.shields.io/github/v/release/4o4E/EClean?label=Release)](https://github.com/4o4E/EClean/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/4o4E/EClean/total?label=Download)](https://github.com/4o4E/EClean/releases)
 
+[![bstats](https://bstats.org/signatures/bukkit/EClean.svg)](https://bstats.org/plugin/bukkit/EClean)
+
 ## 支持设置
 
 - 清理间隔
@@ -35,6 +37,7 @@
 - `/eclean stats` 统计当前所在世界的实体和区块统计
 - `/eclean stats <世界名>` 统计实体和区块统计
 - `/eclean trash` 打开垃圾桶
+- `/eclean show` 打开密集实体统计信息菜单
 
 ## 权限
 
@@ -85,8 +88,6 @@
 2023.01.12 - 1.0.12 添加papi支持
 2023.01.13 - 1.0.13 支持显示已有papi, 修复清理消息不正常发送的问题
 2023.01.17 - 1.0.14 添加缺失的i18n, 修复错误的广播消息
+2023.06.30 - 1.15.0 更改版本号方式, 更新密集实体统计信息菜单
 ```
 
-## Bstats
-
-[![bstats](https://bstats.org/signatures/bukkit/EClean.svg)](https://bstats.org/plugin/bukkit/EClean)
