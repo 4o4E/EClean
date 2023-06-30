@@ -7,6 +7,7 @@ import top.e404.eclean.config.Config
 import top.e404.eclean.config.Lang
 import top.e404.eclean.hook.HookManager
 import top.e404.eclean.hook.PapiHook
+import top.e404.eclean.menu.MenuManager
 import top.e404.eclean.papi.Papi
 import top.e404.eclean.update.Update
 import top.e404.eplugin.EPlugin
@@ -22,10 +23,8 @@ class EClean : EPlugin() {
         )
     }
 
-    override val debugPrefix: String
-        get() = langManager.getOrElse("debug_prefix") { "&7[&aEClean&7]" }
-    override val prefix: String
-        get() = langManager.getOrElse("prefix") { "&7[&6ECleanDebug&7]" }
+    override val debugPrefix get() = langManager["debug_prefix"]
+    override val prefix get() = langManager["prefix"]
 
     override val bstatsId = 14312
     override var debug: Boolean
@@ -35,8 +34,11 @@ class EClean : EPlugin() {
         }
     override val langManager by lazy { Lang }
 
-    override fun onEnable() {
+    init {
         PL = this
+    }
+
+    override fun onEnable() {
         bstats()
         Lang.load(null)
         Config.load(null)
@@ -44,12 +46,14 @@ class EClean : EPlugin() {
         Update.register()
         Clean.schedule()
         HookManager.register()
+        MenuManager.register()
         if (PapiHook.enable) Papi.register()
         for (line in logo) info(line)
         info("&a加载完成, 作者404E, 感谢使用".color())
     }
 
     override fun onDisable() {
+        MenuManager.shutdown()
         if (PapiHook.enable) Papi.unregister()
         Bukkit.getScheduler().cancelTasks(this)
         info("&a已卸载, 作者404E, 感谢使用".color())

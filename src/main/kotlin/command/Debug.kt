@@ -5,7 +5,6 @@ import org.bukkit.entity.Player
 import top.e404.eclean.PL
 import top.e404.eclean.config.Config
 import top.e404.eclean.config.Lang
-import top.e404.eplugin.EPlugin.Companion.color
 import top.e404.eplugin.command.AbstractDebugCommand
 
 /**
@@ -15,8 +14,7 @@ object Debug : AbstractDebugCommand(
     PL,
     "eclean.admin"
 ) {
-    override val usage: String
-        get() = Lang["command.usage.debug"].color()
+    override val usage get() = Lang["command.usage.debug"]
 
     override fun onCommand(
         sender: CommandSender,

@@ -55,6 +55,32 @@ message:
 
 chunk_info: "区块: ({chunkX}, {chunkZ}) 坐标: ({x}, {z})"
 
+menu:
+  title: "&6密集实体检测"
+  item:
+    name: "&6{type}"
+    lore: |
+      &f{amount}
+      &f{chunk}
+      &a点击传送
+  prev:
+    name: "&6上一页"
+    lore: |
+      &f点击前往上一页
+  next:
+    name: "&6下一页"
+    lore: |
+      &f点击前往下一页
+  temp:
+    name: "&6点击切换临时传送功能"
+    lore: |
+      &f传送完成30s后传送回当前位置
+      &f临时传送非切换功能, 启用后仅下次传送生效
+      &f当前状态为{status}
+    status:
+      true: "&a启用"
+      false: "&c禁用"
+
 trash:
   title: "&6垃圾桶, &4关闭后垃圾桶内物品无法找回"
 
@@ -62,6 +88,11 @@ command:
   reload_done: "&a重载完成"
   trash_open: "&a已打开垃圾桶&4(关闭后垃圾桶内物品无法找回)"
   clean_done: "&a共清理&6{count}&a个实体"
+  teleport:
+    done: "&a传送完成"
+    temp: "&a传送完成, 将在30秒后传送回之前的位置"
+    cover: "&a传送完成, 将在30秒后传送回上一个传送的返回位置"
+    back: "&a已返回传送前的位置"
   stats:
     spacing: "&7, "
     content: "&f{type}: {count}个"
@@ -79,6 +110,7 @@ command:
     reload: "&a/ecl reload &f重载插件"
     trash: "&a/ecl trash &f打开垃圾桶"
     players: "&a/eclean players &f展示玩家及其所在的位置"
+    show: "&a/eclean show &f打开密集实体统计信息菜单"
     stats: |
       &a/ecl stats &f- 统计当前所在世界的实体和区块统计
       &a/ecl stats <世界名> &f- 统计实体和区块统计
