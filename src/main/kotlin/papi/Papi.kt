@@ -9,11 +9,13 @@ import top.e404.eplugin.hook.placeholderapi.PapiExpansion
 import top.e404.eplugin.util.parseSecondAsDuration
 
 /**
- * %eclean_before_next% - 距离下一次清理的时间, 单位秒
- * %eclean_before_next_formatted% - 距离下一次清理的时间, 格式化的时间
- * %eclean_last_drop% - 上次清理的掉落物数量
- * %eclean_last_living% - 上次清理的生物数量
- * %eclean_last_chunk% - 上次清理的密集实体数量
+ * Papi扩展
+ *
+ * - `%eclean_before_next%` - 距离下一次清理的时间, 单位秒
+ * - `%eclean_before_next_formatted%` - 距离下一次清理的时间, 格式化的时间
+ * - `%eclean_last_drop%` - 上次清理的掉落物数量
+ * - `%eclean_last_living%` - 上次清理的生物数量
+ * - `%eclean_last_chunk%` - 上次清理的密集实体数量
  */
 object Papi : PapiExpansion(PL, "eclean") {
     override fun onPlaceholderRequest(player: Player?, params: String) = onRequest(player, params)
