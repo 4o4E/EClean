@@ -62,7 +62,8 @@ menu:
     lore: |
       &f{amount}
       &f{chunk}
-      &a点击传送
+      &a左键点击传送
+      &4右键点击清除该区块的所有该实体
   prev:
     name: "&6上一页"
     lore: |
@@ -80,6 +81,7 @@ menu:
     status:
       true: "&a启用"
       false: "&c禁用"
+  clean: "清理区块({chunk})的{type}, 共{count}个"
 
 trash:
   title: "&6垃圾桶, &4关闭后垃圾桶内物品无法找回"
