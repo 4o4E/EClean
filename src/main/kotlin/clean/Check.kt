@@ -7,6 +7,7 @@ import top.e404.eclean.PL
 import top.e404.eclean.clean.Clean.info
 import top.e404.eclean.config.Lang
 import top.e404.eplugin.EPlugin.Companion.formatAsConst
+import top.e404.eplugin.util.mcVer
 
 fun CommandSender.sendWorldStats(worldName: String) {
     val world = Bukkit.getWorld(worldName)
@@ -36,7 +37,7 @@ fun CommandSender.sendWorldStats(worldName: String) {
             "command.stats.world",
             "world" to worldName,
             "count" to world.loadedChunks.size,
-            "force" to world.loadedChunks.count { it.isForceLoaded },
+            "force" to if (mcVer!!.major < 13) null else world.loadedChunks.count { it.isForceLoaded },
             "entity" to entity
         ]
     )
