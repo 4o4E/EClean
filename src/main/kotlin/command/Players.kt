@@ -14,8 +14,7 @@ object Players : ECommand(
     false,
     "eclean.admin"
 ) {
-    override val usage: String
-        get() = Lang["command.usage.players"]
+    override val usage get() = Lang["command.usage.players"]
 
     override fun onCommand(
         sender: CommandSender,

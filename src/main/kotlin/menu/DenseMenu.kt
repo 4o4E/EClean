@@ -28,7 +28,7 @@ class DenseMenu(data: MutableList<EntityInfo>) : ChestMenu(PL, 6, Lang["menu.tit
                 "         ",
                 "  p t n  ",
             )
-        ) { index, char ->
+        ) { _, char ->
             when (char) {
                 'p' -> prev
                 'n' -> next

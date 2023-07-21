@@ -2,7 +2,7 @@ package top.e404.eclean
 
 import org.bukkit.Bukkit
 import top.e404.eclean.clean.Clean
-import top.e404.eclean.command.CommandManager
+import top.e404.eclean.command.Commands
 import top.e404.eclean.config.Config
 import top.e404.eclean.config.Lang
 import top.e404.eclean.hook.HookManager
@@ -42,7 +42,7 @@ class EClean : EPlugin() {
         bstats()
         Lang.load(null)
         Config.load(null)
-        CommandManager.register()
+        Commands.register()
         Update.register()
         Clean.schedule()
         HookManager.register()

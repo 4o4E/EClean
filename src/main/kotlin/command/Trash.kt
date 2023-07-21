@@ -14,8 +14,7 @@ object Trash : ECommand(
     true,
     "eclean.trash"
 ) {
-    override val usage: String
-        get() = Lang["command.usage.trash"]
+    override val usage get() = Lang["command.usage.trash"]
 
     override fun onCommand(sender: CommandSender, args: Array<out String>) {
         val inv = Bukkit.createInventory(null, 54, Lang["trash.title"])

@@ -16,8 +16,7 @@ object EntityStats : ECommand(
     false,
     "eclean.admin"
 ) {
-    override val usage: String
-        get() = Lang["command.usage.entity"]
+    override val usage get() = Lang["command.usage.entity"]
 
     override fun onTabComplete(
         sender: CommandSender,

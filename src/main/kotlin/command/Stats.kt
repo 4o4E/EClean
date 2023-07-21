@@ -16,8 +16,7 @@ object Stats : ECommand(
     false,
     "eclean.admin"
 ) {
-    override val usage: String
-        get() = Lang["command.usage.stats"].color()
+    override val usage get() = Lang["command.usage.stats"].color()
 
     override fun onTabComplete(
         sender: CommandSender,
