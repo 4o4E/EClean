@@ -13,7 +13,7 @@ debug:
     false: "不"
   clean: "{bool}清理{type}(数量{count})"
   chunk_entity_data: "{type}: {limit}"
-  chunk_clean: "清理密集生物{type}(数量{count})位于{chunk}(设置的上限为{limit})"
+  chunk_clean: "清理密集生物{type}(数量{count})位于({chunk})(设置的上限为{limit})"
   start:
     drop: "开始清理{name}的掉落物"
     chunk: |
@@ -53,7 +53,7 @@ message:
   invalid_config: "&c配置文件`{file}`格式错误"
   invalid_entity_type: "&e{type}&c不是有效的实体类型"
 
-chunk_info: "区块: ({chunkX}, {chunkZ}) 坐标: ({x}, {z})"
+chunk_info: "x: {xFrom}-{xTo}, z: {zFrom}-{zTo}"
 
 menu:
   title: "&6密集实体检测"
@@ -100,6 +100,7 @@ command:
     content: "&f{type}: {count}个"
     empty: "&c无结果"
 
+    # {force}占位符在1.12及以下版本不可用
     world: |
       &f世界&a{world}&f共加载区块{count}个(强加载{force}个)
       &b实体统计信息:
@@ -108,23 +109,23 @@ command:
       &f实体&e{type}&f的统计信息
       {entity}
   usage:
-    debug: "&a/ecl debug &f切换debug消息的接受与否"
-    reload: "&a/ecl reload &f重载插件"
-    trash: "&a/ecl trash &f打开垃圾桶"
+    debug: "&a/eclean debug &f切换debug消息的接受与否"
+    reload: "&a/eclean reload &f重载插件"
+    trash: "&a/eclean trash &f打开垃圾桶"
     players: "&a/eclean players &f展示玩家及其所在的位置"
     show: "&a/eclean show &f打开密集实体统计信息菜单"
     stats: |
-      &a/ecl stats &f- 统计当前所在世界的实体和区块统计
-      &a/ecl stats <世界名> &f- 统计实体和区块统计
+      &a/eclean stats &f统计当前所在世界的实体和区块统计
+      &a/eclean stats <世界名> &f统计实体和区块统计
     entity: |
-      &a/ecl entity <实体名> &f- 统计当前世界每个区块的指定实体
-      &a/ecl entity <实体名> <世界名> &f- 统计指定世界个区块的指定实体
-      &a/ecl entity <实体名> <世界名> <纳入统计所需数量> &f- 统计指定世界个区块的指定实体并隐藏数量不超过指定数量的内容
+      &a/eclean entity <实体名> &f统计当前世界每个区块的指定实体
+      &a/eclean entity <实体名> <世界名>&f 统计指定世界个区块的指定实体
+      &a/eclean entity <实体名> <世界名> <纳入统计所需数量> &f统计指定世界个区块的指定实体并隐藏数量不超过指定数量的内容
     clean: |
-      &a/ecl clean &f立刻执行一次清理(执行清理通知, 按照配置文件中的规则)
-      &a/ecl clean entity &f立刻执行一次实体清理(执行清理通知, 按照配置文件中的规则)
-      &a/ecl clean entity <世界名> &f立刻在指定世界执行一次实体清理(&c不&f执行清理通知, 按照配置文件中的规则)
-      &a/ecl clean drop &f立刻执行一次掉落物清理(执行清理通知, 按照配置文件中的规则)
-      &a/ecl clean drop <世界名> &f立刻在指定世界执行一次掉落物清理(&c不&f执行清理通知, 按照配置文件中的规则)
-      &a/ecl clean chunk &f立刻执行一次密集实体清理(执行清理通知, 按照配置文件中的规则)
-      &a/ecl clean chunk <世界名> &f立刻在指定世界执行一次密集实体清理(&c不&f执行清理通知, 按照配置文件中的规则)
+      &a/eclean clean &f立刻执行一次清理(执行清理通知, 按照配置文件中的规则)
+      &a/eclean clean entity &f立刻执行一次实体清理(执行清理通知, 按照配置文件中的规则)
+      &a/eclean clean entity <世界名> &f立刻在指定世界执行一次实体清理(&c不&f执行清理通知, 按照配置文件中的规则)
+      &a/eclean clean drop &f立刻执行一次掉落物清理(执行清理通知, 按照配置文件中的规则)
+      &a/eclean clean drop <世界名> &f立刻在指定世界执行一次掉落物清理(&c不&f执行清理通知, 按照配置文件中的规则)
+      &a/eclean clean chunk &f立刻执行一次密集实体清理(执行清理通知, 按照配置文件中的规则)
+      &a/eclean clean chunk <世界名> &f立刻在指定世界执行一次密集实体清理(&c不&f执行清理通知, 按照配置文件中的规则)

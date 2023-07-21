@@ -264,5 +264,6 @@ object Clean {
         return clean.size
     }
 
-    fun Chunk.info() = Lang["chunk_info", "chunkX" to x, "chunkZ" to z, "x" to x * 16 + 8, "z" to z * 16 + 8]
+    fun Chunk.info() =
+        Lang["chunk_info", "xFrom" to x * 16, "xTo" to x * 16 + 15, "zFrom" to z * 16, "zTo" to z * 16 + 15]
 }
