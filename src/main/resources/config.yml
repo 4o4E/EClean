@@ -127,27 +127,15 @@ chunk:
   format: "{chunk}中{entity}的数量较多({count})"
 
   # 每区块允许的实体上限(不支持正则)
-  # 格式 实体类型: 上限
+  # 格式 实体类型集合: 上限
+  # 实体类型支持正则, 匹配到的实体共用后面的上限
   # 超过上限的实体将会被清理
   # https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
   limit:
     # 怪物
-    ZOMBIE: 10
-    SKELETON: 10
+    ZOMBIE|SKELETON: 10
     SPIDER: 2
     # 动物
-    CHICKEN: 20
-    PIG: 20
-    COW: 20
-    SHEEP: 20
+    CHICKEN|PIG|COW|SHEEP: 50
     # 投掷物
-    EGG: 10
-    ENDER_PEARL: 10
-    EXPERIENCE_ORB: 10
-    FIREBALL: 10
-    FIREWORK: 10
-    SMALL_FIREBALL: 10
-    SNOWBALL: 10
-    ARROW: 10
-    SPECTRAL_ARROW: 10
-    SPLASH_POTION: 10
+    EGG|ENDER_PEARL|EXPERIENCE_ORB|FIREBALL|FIREWORK|SMALL_FIREBALL|SNOWBALL|ARROW|SPECTRAL_ARROW|SPLASH_POTION: 10

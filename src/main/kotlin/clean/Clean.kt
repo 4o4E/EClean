@@ -214,54 +214,39 @@ object Clean {
      * @return 清理数量
      */
     fun World.cleanChunk(): Int {
-        val clean = loadedChunks.flatMap { chunk ->
-            chunk.entities.groupBy {
-                it.type.name
-            }.flatMap a@{ (type, list) ->
-                val limit = chunkCfg.limit[type] // 上限
-                if (limit == null) {
-                    // op通知
-                    if (list.size > chunkCfg.count) chunkCfg.format?.also { format ->
-                        PL.runTask {
-                            PL.sendOpMsg(format.placeholder("chunk" to chunk.info(), "entity" to type, "count" to list.size))
-                        }
-                    }
-                    return@a emptyList()
-                }
-                // 数量超出限制部分
-                val num = list.size - limit
-                // 检查settings
-                if (num > 0) list.let { l ->
-                    // 不清理被命名的生物
-                    if (!chunkCfg.settings.name) l.filter { it.customName == null }
-                    // 清理远离玩家不会消失的生物
-                    else l
-                }.let { l ->
-                    // 不清理拴绳拴住的生物
-                    if (!chunkCfg.settings.lead) l.filter { it !is LivingEntity || !it.isLeashed }
-                    // 清理拴绳拴住的生物
-                    else l
-                }.let { l ->
-                    // 不清理乘骑中的生物
-                    if (!chunkCfg.settings.mount) l.filter { !it.isInsideVehicle }
-                    // 清理乘骑中的生物
-                    else l
-                }.take(num).also {
+        var count = 0
+        for (chunk in loadedChunks) {
+            val chunkEntities = chunk.entities.filter {
+                // 不清理被命名的生物
+                if (chunkCfg.settings.name && it.customName != null) return@filter false
+                // 不清理拴绳拴住的生物
+                if (chunkCfg.settings.lead && it is LivingEntity && it.isLeashed) return@filter false
+                // 不清理乘骑中的生物
+                if (chunkCfg.settings.mount && it.isInsideVehicle) return@filter false
+                true
+            }.toMutableList()
+            chunkCfg.limit.entries.mapNotNull { (regex, limit) ->
+                val matches = chunkEntities.filter { it.type.name.matches(regex) }.toMutableList()
+                chunkEntities.removeAll(matches)
+                // 不清理未达上限的
+                if (matches.size <= limit) return@mapNotNull null
+                matches.subList(limit, matches.size).also {
+                    count += it.size
                     PL.debug {
                         Lang[
                             "debug.chunk_clean",
-                            "type" to type,
-                            "count" to list.size,
+                            "type" to regex,
+                            "count" to it.size,
                             "chunk" to chunk.info(),
                             "limit" to limit,
                         ]
                     }
                 }
-                else emptyList()
+            }.forEach {
+                it.forEach(Entity::remove)
             }
         }
-        clean.forEach(Entity::remove)
-        return clean.size
+        return count
     }
 
     fun Chunk.info() =
