@@ -50,7 +50,7 @@ class DenseMenu(data: MutableList<EntityInfo>) : ChestMenu(PL, 6, Lang["menu.tit
                     override fun onClick(slot: Int, event: InventoryClickEvent): Boolean {
                         temp = !temp
                         val player = event.whoClicked as Player
-                        player.playSound(player.location, Sound.BLOCK_STONE_BUTTON_CLICK_ON, 1F, 1F)
+                        player.playSound(player.location, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1F, 1F)
                         menu.updateIcon()
                         return true
                     }
