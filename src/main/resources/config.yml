@@ -126,9 +126,8 @@ chunk:
   # 发送消息的格式(仅有权限者会收到)
   format: "{chunk}中{entity}的数量较多({count})"
 
-  # 每区块允许的实体上限(不支持正则)
-  # 格式 实体类型集合: 上限
-  # 实体类型支持正则, 匹配到的实体共用后面的上限
+  # 每区块允许的实体上限(正则)
+  # 匹配到的实体共用后面的上限
   # 超过上限的实体将会被清理
   # https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
   limit:

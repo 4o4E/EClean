@@ -11,7 +11,8 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.meta.BookMeta
 import org.bukkit.scheduler.BukkitTask
 import top.e404.eclean.PL
-import top.e404.eclean.config.*
+import top.e404.eclean.config.Config
+import top.e404.eclean.config.Lang
 import top.e404.eplugin.EPlugin.Companion.color
 import top.e404.eplugin.EPlugin.Companion.placeholder
 import top.e404.eplugin.util.asMutableList
@@ -21,14 +22,10 @@ object Clean {
     private var task: BukkitTask? = null
     private fun String.isMatch(list: List<Regex>) = list.any { it matches this }
 
-    private val chunkCfg: ChunkConfig
-        get() = Config.config.chunk
-    private val dropCfg: DropConfig
-        get() = Config.config.drop
-    private val livingCfg: LivingConfig
-        get() = Config.config.living
-    private val duration: Long
-        get() = Config.config.duration
+    private val chunkCfg get() = Config.config.chunk
+    private val dropCfg get() = Config.config.drop
+    private val livingCfg get() = Config.config.living
+    private val duration get() = Config.config.duration
 
     /**
      * 计数, 每20tick++
@@ -217,13 +214,13 @@ object Clean {
         var count = 0
         for (chunk in loadedChunks) {
             val chunkEntities = chunk.entities.filter {
-                // 不清理被命名的生物
-                if (chunkCfg.settings.name && it.customName != null) return@filter false
-                // 不清理拴绳拴住的生物
-                if (chunkCfg.settings.lead && it is LivingEntity && it.isLeashed) return@filter false
-                // 不清理乘骑中的生物
-                if (chunkCfg.settings.mount && it.isInsideVehicle) return@filter false
-                true
+                // 清理被命名的生物
+                if (chunkCfg.settings.name && it.customName != null) return@filter true
+                // 清理拴绳拴住的生物
+                if (chunkCfg.settings.lead && it is LivingEntity && it.isLeashed) return@filter true
+                // 清理乘骑中的生物
+                if (chunkCfg.settings.mount && it.isInsideVehicle) return@filter true
+                false
             }.toMutableList()
             chunkCfg.limit.entries.mapNotNull { (regex, limit) ->
                 val matches = chunkEntities.filter { it.type.name.matches(regex) }.toMutableList()
