@@ -84,15 +84,11 @@ private fun Chunk.cleanDenseEntities(): Int {
         val execute = matches.size > limit
         PL.debug { "检查区块($chunkInfo)的密集实体, 规则${regex}" }
         PL.buildDebug {
-            append("匹配实体")
-                .append(limit)
-                .append("/")
-                .append(matches.size)
-                .append("个(")
-                .append(if (execute) "&c清理&b" else "不清理")
-                .append("): [")
-            matches.info().entries.joinTo(this, ", ") { (k, v) -> "$k: $v" }
-            append("]")
+            append("匹配实体").append(matches.size).append("个(")
+            if (execute) append("&c清理其中&a").append(matches.size - limit).append("个&b")
+            else append("不清理")
+            append("): ")
+            matches.info().entries.joinTo(this, ", ", "[", "]") { (k, v) -> "$k: $v" }
         }
 
         // 不清理匹配数量未达阈值的
