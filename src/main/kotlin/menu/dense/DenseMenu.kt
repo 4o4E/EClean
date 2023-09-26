@@ -1,4 +1,4 @@
-package top.e404.eclean.menu
+package top.e404.eclean.menu.dense
 
 import org.bukkit.Material
 import org.bukkit.Sound
@@ -12,7 +12,7 @@ import top.e404.eplugin.menu.menu.ChestMenu
 import top.e404.eplugin.menu.slot.MenuButton
 import top.e404.eplugin.util.buildItemStack
 
-class DenseMenu(data: MutableList<EntityInfo>) : ChestMenu(PL, 6, Lang["menu.title"], false) {
+class DenseMenu(data: MutableList<EntityInfo>) : ChestMenu(PL, 6, Lang["menu.dense.title"], false) {
     val zone = DenseZone(this, data)
     var temp = false
     private val prev = PrevButton(this)
@@ -36,8 +36,8 @@ class DenseMenu(data: MutableList<EntityInfo>) : ChestMenu(PL, 6, Lang["menu.tit
                     private fun create() = buildItemStack(
                         Material.PAPER,
                         1,
-                        Lang["menu.temp.name"],
-                        Lang["menu.temp.lore", "status" to Lang["menu.temp.status.$temp"]].lines()
+                        Lang["menu.dense.temp.name"],
+                        Lang["menu.dense.temp.lore", "status" to Lang["menu.dense.temp.status.$temp"]].lines()
                     ) {
                         if (temp) {
                             addEnchant(Enchantment.DURABILITY, 1, true)

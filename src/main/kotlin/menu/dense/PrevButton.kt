@@ -1,4 +1,4 @@
-package top.e404.eclean.menu
+package top.e404.eclean.menu.dense
 
 import org.bukkit.Material
 import org.bukkit.Sound
@@ -12,7 +12,8 @@ import kotlin.math.max
 
 class PrevButton(viewMenu: DenseMenu) : MenuButton(viewMenu) {
     val zone = viewMenu.zone
-    private val btn = buildItemStack(Material.ARROW, 1, Lang["menu.prev.name"], Lang["menu.prev.lore"].lines())
+    private val btn =
+        buildItemStack(Material.ARROW, 1, Lang["menu.dense.prev.name"], Lang["menu.dense.prev.lore"].lines())
 
     override var item = if (zone.hasPrev) btn else emptyItem
     override fun onClick(

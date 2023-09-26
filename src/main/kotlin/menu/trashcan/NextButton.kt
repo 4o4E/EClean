@@ -1,4 +1,4 @@
-package top.e404.eclean.menu
+package top.e404.eclean.menu.trashcan
 
 import org.bukkit.Material
 import org.bukkit.Sound
@@ -10,9 +10,10 @@ import top.e404.eplugin.util.buildItemStack
 import top.e404.eplugin.util.emptyItem
 import kotlin.math.max
 
-class NextButton(val viewMenu: DenseMenu) : MenuButton(viewMenu) {
+class NextButton(val viewMenu: TrashcanMenu) : MenuButton(viewMenu) {
     val zone get() = viewMenu.zone
-    private val btn = buildItemStack(Material.ARROW, 1, Lang["menu.next.name"], Lang["menu.next.lore"].lines())
+    private val btn =
+        buildItemStack(Material.ARROW, 1, Lang["menu.trashcan.next.name"], Lang["menu.trashcan.next.lore"].lines())
 
     override var item = if (zone.hasNext) btn else emptyItem
     override fun onClick(

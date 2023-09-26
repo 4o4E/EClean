@@ -4,7 +4,10 @@ import com.charleskorn.kaml.Yaml
 import com.charleskorn.kaml.YamlConfiguration
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.bukkit.Bukkit
+import org.bukkit.command.CommandSender
 import top.e404.eclean.PL
+import top.e404.eclean.clean.Trashcan
 import top.e404.eplugin.config.JarConfigDefault
 import top.e404.eplugin.config.KtxConfig
 import top.e404.eplugin.config.serialization.RegexSerialization
@@ -15,60 +18,97 @@ object Config : KtxConfig<ConfigData>(
     default = JarConfigDefault(PL, "config.yml"),
     serializer = ConfigData.serializer(),
     format = Yaml(configuration = YamlConfiguration(strictMode = false))
-)
+) {
+    // 加载时处理清理task
+    override fun onLoad(config: ConfigData, sender: CommandSender?) {
+        if (Bukkit.isPrimaryThread()) {
+            Trashcan.task?.cancel()
+            val duration = config.trashcan.duration
+            if (duration == null) {
+                Trashcan.task = null
+                return
+            }
+            Trashcan.task = plugin.runTaskTimer(duration, duration) {
+                Trashcan.trashData.clear()
+                Trashcan.trashValues.clear()
+            }
+            return
+        }
+        plugin.runTask {
+            Trashcan.task?.cancel()
+            val duration = config.trashcan.duration
+            if (duration == null) {
+                Trashcan.task = null
+                return@runTask
+            }
+            Trashcan.task = plugin.runTaskTimer(duration, duration) {
+                Trashcan.trashData.clear()
+                Trashcan.trashValues.clear()
+            }
+        }
+    }
+}
 
 @Serializable
 data class ConfigData(
     var debug: Boolean = false,
     var update: Boolean = true,
-    val duration: Long,
-    val message: Map<Long, String>,
-    val living: LivingConfig,
-    val drop: DropConfig,
-    val chunk: ChunkConfig,
+    var duration: Long,
+    var message: MutableMap<Long, String>,
+    var living: LivingConfig,
+    var drop: DropConfig,
+    var chunk: ChunkConfig,
+    var trashcan: TrashcanConfig,
 )
 
 @Serializable
 data class DropConfig(
-    val enable: Boolean,
+    var enable: Boolean = true,
     @SerialName("disable_world")
-    val disableWorld: List<String>,
-    val finish: String?,
+    var disableWorld: MutableList<String> = mutableListOf(),
+    var finish: String = "",
     @SerialName("is_black")
-    val black: Boolean,
-    val enchant: Boolean = false,
+    var black: Boolean = true,
+    var enchant: Boolean = false,
     @SerialName("written_book")
-    val writtenBook: Boolean = false,
-    val match: List<@Serializable(RegexSerialization::class) Regex>,
+    var writtenBook: Boolean = false,
+    var match: MutableList<@Serializable(RegexSerialization::class) Regex> = mutableListOf(),
 )
 
 @Serializable
 data class LivingConfig(
-    val enable: Boolean,
+    var enable: Boolean = true,
     @SerialName("disable_world")
-    val disableWorld: List<String>,
-    val finish: String,
-    val settings: Settings,
+    var disableWorld: MutableList<String> = mutableListOf(),
+    var finish: String = "",
+    var settings: Settings = Settings(),
     @SerialName("is_black")
-    val black: Boolean,
-    val match: List<@Serializable(RegexSerialization::class) Regex>,
+    var black: Boolean = true,
+    var match: MutableList<@Serializable(RegexSerialization::class) Regex> = mutableListOf(),
 )
 
 @Serializable
 data class Settings(
-    val name: Boolean,
-    val lead: Boolean,
-    val mount: Boolean,
+    var name: Boolean = false,
+    var lead: Boolean = false,
+    var mount: Boolean = false,
 )
 
 @Serializable
 data class ChunkConfig(
-    val enable: Boolean,
+    var enable: Boolean = true,
     @SerialName("disable_world")
-    val disableWorld: List<String>,
-    val finish: String,
-    val settings: Settings,
-    val count: Int,
-    val format: String?,
-    val limit: Map<@Serializable(RegexSerialization::class) Regex, Int>,
+    var disableWorld: MutableList<String> = mutableListOf(),
+    var finish: String = "",
+    var settings: Settings = Settings(),
+    var count: Int = 50,
+    var format: String? = null,
+    var limit: MutableMap<@Serializable(RegexSerialization::class) Regex, Int> = mutableMapOf(),
+)
+
+@Serializable
+data class TrashcanConfig(
+    var enable: Boolean = true,
+    var collect: Boolean = true,
+    var duration: Long? = null,
 )

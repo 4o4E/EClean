@@ -1,12 +1,14 @@
-package top.e404.eclean.menu
+package top.e404.eclean.menu.dense
 
 import org.bukkit.Location
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import top.e404.eclean.PL
-import top.e404.eclean.clean.Clean.info
+import top.e404.eclean.clean.info
 import top.e404.eclean.config.Lang
+import top.e404.eclean.menu.MenuManager
+import top.e404.eclean.menu.Temp
 import top.e404.eplugin.menu.zone.MenuButtonZone
 
 class DenseZone(
@@ -23,7 +25,7 @@ class DenseZone(
             PL.sendMsgWithPrefix(
                 player,
                 Lang[
-                    "menu.clean",
+                    "menu.dense.clean",
                     "chunk" to info.chunk.info(),
                     "type" to info.type.name,
                     "count" to entities.size

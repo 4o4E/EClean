@@ -3,10 +3,8 @@ package top.e404.eclean.command
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
 import top.e404.eclean.PL
+import top.e404.eclean.clean.*
 import top.e404.eclean.clean.Clean
-import top.e404.eclean.clean.Clean.cleanChunk
-import top.e404.eclean.clean.Clean.cleanDrop
-import top.e404.eclean.clean.Clean.cleanLiving
 import top.e404.eclean.config.Lang
 import top.e404.eplugin.command.ECommand
 
@@ -40,7 +38,7 @@ object Clean : ECommand(
             2 -> when (args[1].lowercase()) {
                 "e", "entity" -> cleanLiving()
                 "d", "drop" -> cleanDrop()
-                "c", "chunk" -> cleanChunk()
+                "c", "chunk" -> cleanDenseEntities()
                 else -> sender.sendMessage(usage)
             }
 
@@ -53,7 +51,7 @@ object Clean : ECommand(
                 val count = when (args[1].lowercase()) {
                     "e", "entity" -> world.cleanLiving().run { "($first/$second)" }
                     "d", "drop" -> world.cleanDrop().run { "($first/$second)" }
-                    "c", "chunk" -> world.cleanChunk()
+                    "c", "chunk" -> world.cleanChunkDenseEntities()
                     else -> {
                         sender.sendMessage(usage)
                         return

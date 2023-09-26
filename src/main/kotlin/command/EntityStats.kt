@@ -5,7 +5,6 @@ import org.bukkit.command.CommandSender
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
 import top.e404.eclean.PL
-import top.e404.eclean.clean.sendEntityStats
 import top.e404.eclean.config.Lang
 import top.e404.eplugin.command.ECommand
 

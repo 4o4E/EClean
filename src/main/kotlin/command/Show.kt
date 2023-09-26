@@ -7,9 +7,9 @@ import org.bukkit.entity.Player
 import top.e404.eclean.PL
 import top.e404.eclean.config.Config
 import top.e404.eclean.config.Lang
-import top.e404.eclean.menu.DenseMenu
-import top.e404.eclean.menu.EntityInfo
 import top.e404.eclean.menu.MenuManager
+import top.e404.eclean.menu.dense.DenseMenu
+import top.e404.eclean.menu.dense.EntityInfo
 import top.e404.eplugin.command.ECommand
 
 object Show : ECommand(

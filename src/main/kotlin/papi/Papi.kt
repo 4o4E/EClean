@@ -4,6 +4,9 @@ import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Player
 import top.e404.eclean.PL
 import top.e404.eclean.clean.Clean
+import top.e404.eclean.clean.lastChunk
+import top.e404.eclean.clean.lastDrop
+import top.e404.eclean.clean.lastLiving
 import top.e404.eclean.config.Config
 import top.e404.eplugin.hook.placeholderapi.PapiExpansion
 import top.e404.eplugin.util.parseSecondAsDuration
@@ -24,9 +27,9 @@ object Papi : PapiExpansion(PL, "eclean") {
         return when (params.lowercase()) {
             "before_next" -> (Config.config.duration - Clean.count).toString()
             "before_next_formatted" -> (Config.config.duration - Clean.count).parseSecondAsDuration()
-            "last_drop" -> Clean.lastDrop.toString()
-            "last_living" -> Clean.lastLiving.toString()
-            "last_chunk" -> Clean.lastChunk.toString()
+            "last_drop" -> lastDrop.toString()
+            "last_living" -> lastLiving.toString()
+            "last_chunk" -> lastChunk.toString()
             else -> null
         }
     }

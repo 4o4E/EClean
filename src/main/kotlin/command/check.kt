@@ -1,10 +1,10 @@
-package top.e404.eclean.clean
+package top.e404.eclean.command
 
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.EntityType
 import top.e404.eclean.PL
-import top.e404.eclean.clean.Clean.info
+import top.e404.eclean.clean.info
 import top.e404.eclean.config.Lang
 import top.e404.eplugin.EPlugin.Companion.formatAsConst
 import top.e404.eplugin.util.mcVer

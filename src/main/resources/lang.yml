@@ -7,34 +7,6 @@ debug:
   player_enable: "&f已&a启用&bDebug&f, 你将会收到&bDebug&f消息, 再使用一次此指令以&c禁用"
   player_disable: "&f已&c禁用&bDebug&f, 你不会收到&bDebug&f消息, 再使用一次此指令以&a启用"
 
-  spacing: ","
-  bool:
-    true: ""
-    false: "不"
-  clean: "{bool}清理{type}(数量{count})"
-  chunk_entity_data: "{type}: {limit}"
-  chunk_clean: "清理密集生物{type}(数量{count})位于({chunk})(设置的上限为{limit})"
-  start:
-    drop: "开始清理{name}的掉落物"
-    chunk: |
-      开始检查密集实体
-      启用检查的世界: [{world}]
-      {name}清理被命名的生物
-      {lead}清理拴绳拴住的生物
-      {mount}清理乘骑中的生物
-      限制实体包含: [{limit}]
-    living: |
-      开始清理生物
-      启用生物清理的世界: [{world}]
-      {name}清理被命名的生物
-      {lead}清理拴绳拴住的生物
-      {mount}清理乘骑中的生物
-      {black}匹配[{match}]的生物将会被清理
-    clean: |
-      开始清理掉落物
-      启用掉落物清理的世界: [{world}]
-      {black}匹配[{match}]的掉落物将会被清理
-
 warn:
   out_of_range: "清理前的消息`{message}`&e设置的时长超过清理间隔`{duration}`&e, 请在设置中修改(此消息将不会被发送)"
   invalid_number: "清理消息的时长只能是小于清理间隔的数字"
@@ -53,42 +25,58 @@ message:
   invalid_config: "&c配置文件`{file}`格式错误"
   invalid_entity_type: "&e{type}&c不是有效的实体类型"
 
-chunk_info: "x: {xFrom}-{xTo}, z: {zFrom}-{zTo}"
-
 menu:
-  title: "&6密集实体检测"
-  item:
-    name: "&6{type}"
-    lore: |
-      &f{amount}
-      &f{chunk}
-      &a左键点击传送
-      &4右键点击清除该区块的所有该实体
-  prev:
-    name: "&6上一页"
-    lore: |
-      &f点击前往上一页
-  next:
-    name: "&6下一页"
-    lore: |
-      &f点击前往下一页
-  temp:
-    name: "&6点击切换临时传送功能"
-    lore: |
-      &f传送完成30s后传送回当前位置
-      &f临时传送非切换功能, 启用后仅下次传送生效
-      &f当前状态为{status}
-    status:
-      true: "&a启用"
-      false: "&c禁用"
-  clean: "清理区块({chunk})的{type}, 共{count}个"
+  dense:
+    title: "&6密集实体检测"
+    item:
+      name: "&6{type}"
+      lore: |-
+        &f{amount}
+        &f{chunk}
+        &a左键点击传送
+        &4右键点击清除该区块的所有该实体
+    prev:
+      name: "&6上一页"
+      lore: |-
+        &f点击前往上一页
+    next:
+      name: "&6下一页"
+      lore: |-
+        &f点击前往下一页
+    temp:
+      name: "&6点击切换临时传送功能"
+      lore: |-
+        &f传送完成30s后传送回当前位置
+        &f临时传送非切换功能, 启用后仅下次传送生效
+        &f当前状态为{status}
+      status:
+        true: "&a启用"
+        false: "&c禁用"
+    clean: "清理区块({chunk})的{type}, 共{count}个"
+  trashcan:
+    title: "&6临时垃圾桶"
+    item:
+      # 物品最后加的lore
+      lore: |-
+        &f共{amount}个
+        &a左键点击拿取一个
+        &a右键点击拿取半组
+        &aShift+左键点击拿取一组
+    prev:
+      name: "&6上一页"
+      lore: |-
+        &f点击前往上一页
+    next:
+      name: "&6下一页"
+      lore: |-
+        &f点击前往下一页
 
 trash:
   title: "&6垃圾桶, &4关闭后垃圾桶内物品无法找回"
 
 command:
   reload_done: "&a重载完成"
-  trash_open: "&a已打开垃圾桶&4(关闭后垃圾桶内物品无法找回)"
+  trash_open: "&a已打开垃圾桶"
   clean_done: "&a共清理&6{count}&a个实体"
   teleport:
     done: "&a传送完成"
@@ -101,11 +89,11 @@ command:
     empty: "&c无结果"
 
     # {force}占位符在1.12及以下版本不可用
-    world: |
+    world: |-
       &f世界&a{world}&f共加载区块{count}个(强加载{force}个)
       &b实体统计信息:
       {entity}
-    entity: |
+    entity: |-
       &f实体&e{type}&f的统计信息
       {entity}
   usage:
@@ -114,14 +102,14 @@ command:
     trash: "&a/eclean trash &f打开垃圾桶"
     players: "&a/eclean players &f展示玩家及其所在的位置"
     show: "&a/eclean show &f打开密集实体统计信息菜单"
-    stats: |
+    stats: |-
       &a/eclean stats &f统计当前所在世界的实体和区块统计
       &a/eclean stats <世界名> &f统计实体和区块统计
-    entity: |
+    entity: |-
       &a/eclean entity <实体名> &f统计当前世界每个区块的指定实体
       &a/eclean entity <实体名> <世界名>&f 统计指定世界个区块的指定实体
       &a/eclean entity <实体名> <世界名> <纳入统计所需数量> &f统计指定世界个区块的指定实体并隐藏数量不超过指定数量的内容
-    clean: |
+    clean: |-
       &a/eclean clean &f立刻执行一次清理(执行清理通知, 按照配置文件中的规则)
       &a/eclean clean entity &f立刻执行一次实体清理(执行清理通知, 按照配置文件中的规则)
       &a/eclean clean entity <世界名> &f立刻在指定世界执行一次实体清理(&c不&f执行清理通知, 按照配置文件中的规则)
