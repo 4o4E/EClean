@@ -76,6 +76,7 @@ trash:
 
 command:
   reload_done: "&a重载完成"
+  trash_disable: "&a垃圾桶功能已被禁用"
   trash_open: "&a已打开垃圾桶"
   clean_done: "&a共清理&6{count}&a个实体"
   teleport:

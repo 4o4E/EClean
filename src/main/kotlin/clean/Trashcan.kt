@@ -6,6 +6,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.scheduler.BukkitTask
 import top.e404.eclean.PL
+import top.e404.eclean.config.Config
 import top.e404.eclean.menu.MenuManager
 import top.e404.eclean.menu.trashcan.TrashInfo
 import top.e404.eclean.menu.trashcan.TrashcanMenu
@@ -22,6 +23,32 @@ object Trashcan : EListener(PL) {
     private val openTrash = mutableMapOf<Player, TrashcanMenu>()
 
     var task: BukkitTask? = null
+
+    /**
+     * 垃圾桶清空倒计时, 单位秒
+     */
+    var countdown = 0L
+
+    fun schedule() {
+        task?.cancel()
+        val duration = Config.config.trashcan.duration
+        if (duration == null) {
+            task = null
+            return
+        }
+        if (!Config.config.trashcan.enable) return
+        countdown = duration
+        task = Config.plugin.runTaskTimer(20, 20) {
+            countdown--
+            if (countdown <= 0L) {
+                countdown = duration
+                Config.plugin.debug { "清空垃圾桶" }
+                trashData.clear()
+                trashValues.clear()
+                update()
+            }
+        }
+    }
 
     fun ItemStack.sign() = ItemSign(this)
     class ItemSign(val item: ItemStack) {

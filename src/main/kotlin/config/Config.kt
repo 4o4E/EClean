@@ -22,30 +22,10 @@ object Config : KtxConfig<ConfigData>(
     // 加载时处理清理task
     override fun onLoad(config: ConfigData, sender: CommandSender?) {
         if (Bukkit.isPrimaryThread()) {
-            Trashcan.task?.cancel()
-            val duration = config.trashcan.duration
-            if (duration == null) {
-                Trashcan.task = null
-                return
-            }
-            Trashcan.task = plugin.runTaskTimer(duration, duration) {
-                Trashcan.trashData.clear()
-                Trashcan.trashValues.clear()
-            }
+            Trashcan.schedule()
             return
         }
-        plugin.runTask {
-            Trashcan.task?.cancel()
-            val duration = config.trashcan.duration
-            if (duration == null) {
-                Trashcan.task = null
-                return@runTask
-            }
-            Trashcan.task = plugin.runTaskTimer(duration, duration) {
-                Trashcan.trashData.clear()
-                Trashcan.trashValues.clear()
-            }
-        }
+        plugin.runTask { Trashcan.schedule() }
     }
 }
 
@@ -110,5 +90,5 @@ data class ChunkConfig(
 data class TrashcanConfig(
     var enable: Boolean = true,
     var collect: Boolean = true,
-    var duration: Long? = null,
+    var duration: Long? = 6000,
 )
