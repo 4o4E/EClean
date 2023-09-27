@@ -51,6 +51,8 @@
 - `%eclean_last_drop%` - `上次清理的掉落物数量`
 - `%eclean_last_living%` - `上次清理的生物数量`
 - `%eclean_last_chunk%` - `上次清理的密集实体数量`
+- `%eclean_trashcan_countdown%` - `垃圾桶清理倒计时, 单位秒`
+- `%eclean_trashcan_countdown_formatted%` - `垃圾桶清理倒计时, 格式化的时间`
 
 ## 配置
 
