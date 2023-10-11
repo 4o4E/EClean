@@ -117,6 +117,13 @@ fun World.cleanDrop(): Pair<Int, Int> {
         }
         Trashcan.update()
     }
+    // 不启用垃圾箱收集
+    else {
+        items.values.forEach {
+            count += it.size
+            it.forEach(Item::remove)
+        }
+    }
     PL.debug { "世界${name}掉落物清理完成($count/${waitingForClean.size})" }
     return count to waitingForClean.size
 }
