@@ -8,6 +8,8 @@ import org.bukkit.inventory.meta.BookMeta
 import top.e404.eclean.PL
 import top.e404.eclean.config.Config
 import top.e404.eclean.util.isMatch
+import top.e404.eclean.util.noOnline
+import top.e404.eclean.util.noOnlineMessage
 import top.e404.eplugin.EPlugin.Companion.placeholder
 
 private inline val dropCfg get() = Config.config.drop
@@ -43,9 +45,11 @@ fun cleanDrop() {
     lastDrop = result.sumOf { it.first }
     PL.debug { "掉落物清理共${lastDrop}个, 耗时${time}ms" }
 
-    val all = result.sumOf { it.second }
-    val finish = dropCfg.finish
-    if (finish.isNotBlank()) PL.broadcastMsg(finish.placeholder("clean" to lastDrop, "all" to all))
+    if (noOnline && noOnlineMessage) {
+        val all = result.sumOf { it.second }
+        val finish = dropCfg.finish
+        if (finish.isNotBlank()) PL.broadcastMsg(finish.placeholder("clean" to lastDrop, "all" to all))
+    }
 }
 
 /**

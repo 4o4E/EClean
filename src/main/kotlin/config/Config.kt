@@ -39,6 +39,8 @@ data class ConfigData(
     var drop: DropConfig,
     var chunk: ChunkConfig,
     var trashcan: TrashcanConfig,
+    @SerialName("no_online")
+    var noOnline: NoOnlineConfig = NoOnlineConfig(),
 )
 
 @Serializable
@@ -91,4 +93,10 @@ data class TrashcanConfig(
     var enable: Boolean = true,
     var collect: Boolean = true,
     var duration: Long? = 6000,
+)
+
+@Serializable
+data class NoOnlineConfig(
+    var clean: Boolean = true,
+    var message: Boolean = true,
 )

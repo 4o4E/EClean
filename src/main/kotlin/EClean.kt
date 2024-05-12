@@ -19,11 +19,11 @@ import java.io.File
 open class EClean : EPlugin {
     companion object {
         val logo = listOf(
-            """&6 ______     ______     __         ______     ______     __   __   """.color(),
-            """&6/\  ___\   /\  ___\   /\ \       /\  ___\   /\  __ \   /\ "-.\ \  """.color(),
-            """&6\ \  __\   \ \ \____  \ \ \____  \ \  __\   \ \  __ \  \ \ \-.  \ """.color(),
-            """&6 \ \_____\  \ \_____\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_\\"\_\""".color(),
-            """&6  \/_____/   \/_____/   \/_____/   \/_____/   \/_/\/_/   \/_/ \/_/""".color()
+            """&6 ______     ______     __         ______     ______     __   __   """.color,
+            """&6/\  ___\   /\  ___\   /\ \       /\  ___\   /\  __ \   /\ "-.\ \  """.color,
+            """&6\ \  __\   \ \ \____  \ \ \____  \ \  __\   \ \  __ \  \ \ \-.  \ """.color,
+            """&6 \ \_____\  \ \_____\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_\\"\_\""".color,
+            """&6  \/_____/   \/_____/   \/_____/   \/_____/   \/_/\/_/   \/_/ \/_/""".color
         )
     }
 
@@ -65,14 +65,14 @@ open class EClean : EPlugin {
         Trashcan.register()
         if (PapiHook.enable) Papi.register()
         for (line in logo) info(line)
-        info("&a加载完成, 作者404E, 感谢使用".color())
+        info("&a加载完成, 作者404E, 感谢使用".color)
     }
 
     override fun onDisable() {
         MenuManager.shutdown()
         if (PapiHook.enable) Papi.unregister()
         Bukkit.getScheduler().cancelTasks(this)
-        info("&a已卸载, 作者404E, 感谢使用".color())
+        info("&a已卸载, 作者404E, 感谢使用".color)
     }
 }
 

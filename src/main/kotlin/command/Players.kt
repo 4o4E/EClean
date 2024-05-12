@@ -22,7 +22,7 @@ object Players : ECommand(
     ) {
         Bukkit.getOnlinePlayers().groupBy { it.world }.forEach { (world, list) ->
             val s = list.joinToString { "\n  &b${it.name}&f: ${it.location.run { "$blockX $blockY $blockZ" }}" }
-            sender.sendMessage("&6${world.name}:$s".color())
+            sender.sendMessage("&6${world.name}:$s".color)
         }
     }
 }

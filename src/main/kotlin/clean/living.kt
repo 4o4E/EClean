@@ -8,6 +8,8 @@ import top.e404.eclean.PL
 import top.e404.eclean.config.Config
 import top.e404.eclean.util.info
 import top.e404.eclean.util.isMatch
+import top.e404.eclean.util.noOnline
+import top.e404.eclean.util.noOnlineMessage
 import top.e404.eplugin.EPlugin.Companion.placeholder
 
 private inline val livingCfg get() = Config.config.living
@@ -43,9 +45,11 @@ fun cleanLiving() {
     lastLiving = result.sumOf { it.first }
     PL.debug { "生物清理共${lastLiving}个, 耗时${time}ms" }
 
-    val all = result.sumOf { it.second }
-    val finish = livingCfg.finish
-    if (finish.isNotBlank()) PL.broadcastMsg(finish.placeholder(mapOf("clean" to lastLiving, "all" to all)))
+    if (noOnline && noOnlineMessage) {
+        val all = result.sumOf { it.second }
+        val finish = livingCfg.finish
+        if (finish.isNotBlank()) PL.broadcastMsg(finish.placeholder(mapOf("clean" to lastLiving, "all" to all)))
+    }
 }
 
 /**

@@ -84,6 +84,7 @@ abstract class DropCleanTest {
                 ItemStack(Material.WRITABLE_BOOK).apply {
                     if (index == 0) editItemMeta {
                         this as BookMeta
+                        @Suppress("DEPRECATION")
                         this.pages = mutableListOf("a", "b")
                     }
                 }
@@ -106,6 +107,7 @@ abstract class DropCleanTest {
                 ItemStack(Material.WRITABLE_BOOK).apply {
                     if (index == 0) editItemMeta {
                         this as BookMeta
+                        @Suppress("DEPRECATION")
                         this.pages = mutableListOf("a", "b")
                     }
                 }

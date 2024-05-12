@@ -4,10 +4,13 @@ import be.seeseemelk.mockbukkit.entity.LivingEntityMock
 import org.bukkit.Location
 import org.bukkit.entity.Entity
 import org.bukkit.entity.EntityType
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 import top.e404.eclean.clean.cleanDenseEntities
 import top.e404.eclean.clean.lastChunk
-import top.e404.eclean.config.*
+import top.e404.eclean.config.Config
 import top.e404.eclean.test.*
 
 abstract class ChunkCleanTest {
@@ -33,6 +36,7 @@ abstract class ChunkCleanTest {
             chunk.load()
             val location = Location(world, 8.0, 8.0, 8.0)
             val entities = world.spawnEntities(location, EntityType.ZOMBIE, 16) { _, zombie ->
+                @Suppress("DEPRECATION")
                 zombie.customName = "custom name"
             }
 
@@ -53,6 +57,7 @@ abstract class ChunkCleanTest {
             chunk.load()
             val location = Location(world, 8.0, 8.0, 8.0)
             val entities = world.spawnEntities(location, EntityType.ZOMBIE, 16) { _, zombie ->
+                @Suppress("DEPRECATION")
                 zombie.customName = "custom name"
             }
 

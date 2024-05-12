@@ -35,6 +35,7 @@ abstract class LivingCleanTest {
             chunk.load()
             val location = Location(world, 8.0, 8.0, 8.0)
             val entities = world.spawnEntities(location, EntityType.ZOMBIE, 16) { _, zombie ->
+                @Suppress("DEPRECATION")
                 zombie.customName = "custom name"
             }
 
@@ -54,6 +55,7 @@ abstract class LivingCleanTest {
             chunk.load()
             val location = Location(world, 8.0, 8.0, 8.0)
             val entities = world.spawnEntities(location, EntityType.ZOMBIE, 16) { _, zombie ->
+                @Suppress("DEPRECATION")
                 zombie.customName = "custom name"
             }
 

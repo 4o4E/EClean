@@ -62,7 +62,8 @@ fun resetConfig() {
         living = LivingConfig(enable = false),
         drop = DropConfig(enable = false),
         chunk = ChunkConfig(enable = false),
-        trashcan = TrashcanConfig()
+        trashcan = TrashcanConfig(),
+        noOnline = NoOnlineConfig()
     )
     // 清空控制台输出
     consoleOut

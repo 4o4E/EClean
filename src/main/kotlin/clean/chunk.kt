@@ -8,6 +8,8 @@ import org.bukkit.entity.LivingEntity
 import top.e404.eclean.PL
 import top.e404.eclean.config.Config
 import top.e404.eclean.util.info
+import top.e404.eclean.util.noOnline
+import top.e404.eclean.util.noOnlineMessage
 import top.e404.eplugin.EPlugin.Companion.placeholder
 
 private inline val chunkCfg get() = Config.config.chunk
@@ -45,8 +47,10 @@ fun cleanDenseEntities() {
 
     PL.debug { "密集实体清理共${lastChunk}个, 耗时${time}ms" }
 
-    val finish = Config.config.chunk.finish
-    if (finish.isNotBlank()) PL.broadcastMsg(finish.placeholder("clean" to lastChunk))
+    if (noOnline && noOnlineMessage) {
+        val finish = Config.config.chunk.finish
+        if (finish.isNotBlank()) PL.broadcastMsg(finish.placeholder("clean" to lastChunk))
+    }
 }
 
 /**
