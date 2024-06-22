@@ -45,7 +45,13 @@ fun cleanDrop() {
     lastDrop = result.sumOf { it.first }
     PL.debug { "掉落物清理共${lastDrop}个, 耗时${time}ms" }
 
-    if (noOnline && noOnlineMessage) {
+    if (noOnline) {
+        if (noOnlineMessage) {
+            val all = result.sumOf { it.second }
+            val finish = dropCfg.finish
+            if (finish.isNotBlank()) PL.broadcastMsg(finish.placeholder("clean" to lastDrop, "all" to all))
+        }
+    } else {
         val all = result.sumOf { it.second }
         val finish = dropCfg.finish
         if (finish.isNotBlank()) PL.broadcastMsg(finish.placeholder("clean" to lastDrop, "all" to all))

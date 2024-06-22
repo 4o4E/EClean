@@ -30,12 +30,20 @@ object Clean {
         }
         task = PL.runTaskTimer(20, 20) {
             count++
-            if (noOnline && noOnlineMessage) {
+            if (noOnline) {
+                if (noOnlineMessage) {
+                    Config.config.message[duration - count]?.let { PL.broadcastMsg(it) }
+                }
+            } else {
                 Config.config.message[duration - count]?.let { PL.broadcastMsg(it) }
             }
             if (count >= duration) {
                 count = 0
-                if (noOnline && noOnlineClean) {
+                if (noOnline) {
+                    if (noOnlineClean) {
+                        clean()
+                    }
+                } else {
                     clean()
                 }
             }

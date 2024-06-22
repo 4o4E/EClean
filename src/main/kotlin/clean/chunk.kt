@@ -47,7 +47,12 @@ fun cleanDenseEntities() {
 
     PL.debug { "密集实体清理共${lastChunk}个, 耗时${time}ms" }
 
-    if (noOnline && noOnlineMessage) {
+    if (noOnline) {
+        if (noOnlineMessage) {
+            val finish = Config.config.chunk.finish
+            if (finish.isNotBlank()) PL.broadcastMsg(finish.placeholder("clean" to lastChunk))
+        }
+    } else {
         val finish = Config.config.chunk.finish
         if (finish.isNotBlank()) PL.broadcastMsg(finish.placeholder("clean" to lastChunk))
     }

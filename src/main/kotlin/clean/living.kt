@@ -45,7 +45,13 @@ fun cleanLiving() {
     lastLiving = result.sumOf { it.first }
     PL.debug { "生物清理共${lastLiving}个, 耗时${time}ms" }
 
-    if (noOnline && noOnlineMessage) {
+    if (noOnline) {
+        if (noOnlineMessage) {
+            val all = result.sumOf { it.second }
+            val finish = livingCfg.finish
+            if (finish.isNotBlank()) PL.broadcastMsg(finish.placeholder(mapOf("clean" to lastLiving, "all" to all)))
+        }
+    } else {
         val all = result.sumOf { it.second }
         val finish = livingCfg.finish
         if (finish.isNotBlank()) PL.broadcastMsg(finish.placeholder(mapOf("clean" to lastLiving, "all" to all)))
