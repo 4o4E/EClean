@@ -1,5 +1,9 @@
 # [EClean](https://github.com/4o4E/EClean)
 
+> [!IMPORTANT]
+> 目前最新版本不支持java8, 请使用以下版本
+> https://github.com/4o4E/EClean/releases/tag/1.16.1
+
 > 基于BukkitAPI的清理插件, 适用于Spigot和Paper等Bukkit的下游分支核心, 支持`1.8.x`
 > 及以上版本, `1.8和1.18.x`, `1.19.x`, `1.20.x`经过测试
 >
