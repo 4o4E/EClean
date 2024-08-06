@@ -52,6 +52,7 @@ data class DropConfig(
     @SerialName("is_black")
     var black: Boolean = true,
     var enchant: Boolean = false,
+    var lore: Boolean = false,
     @SerialName("written_book")
     var writtenBook: Boolean = false,
     var match: MutableList<@Serializable(RegexSerialization::class) Regex> = mutableListOf(),

@@ -5,6 +5,7 @@ import org.bukkit.command.CommandSender
 import top.e404.eclean.PL
 import top.e404.eclean.clean.*
 import top.e404.eclean.clean.Clean
+import top.e404.eclean.clean.Trashcan.cleanTrash
 import top.e404.eclean.config.Lang
 import top.e404.eplugin.command.ECommand
 
@@ -17,7 +18,7 @@ object Clean : ECommand(
 ) {
     override val usage get() = Lang["command.usage.clean"]
 
-    private val arg = listOf("entity", "drop", "chunk")
+    private val arg = listOf("entity", "drop", "chunk", "trash")
     override fun onTabComplete(
         sender: CommandSender,
         args: Array<out String>,
@@ -39,6 +40,7 @@ object Clean : ECommand(
                 "e", "entity" -> cleanLiving()
                 "d", "drop" -> cleanDrop()
                 "c", "chunk" -> cleanDenseEntities()
+                "t", "trash" -> cleanTrash()
                 else -> sender.sendMessage(usage)
             }
 
