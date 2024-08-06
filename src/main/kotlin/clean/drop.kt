@@ -15,6 +15,7 @@ import top.e404.eplugin.EPlugin.Companion.placeholder
 private inline val dropCfg get() = Config.config.drop
 private inline val trashcanCfg get() = Config.config.trashcan
 
+
 /**
  * 最近一次清理掉落物的数量
  */
@@ -84,6 +85,10 @@ fun World.cleanDrop(): Pair<Int, Int> {
     if (dropCfg.writtenBook) waitingForClean.removeIf {
         it.itemStack.type == Material.WRITABLE_BOOK
                 && (it.itemStack.itemMeta as? BookMeta)?.hasPages() == true
+    }
+    // dropCfg.lore == true 时不清理lore的物品(从列表中移除)
+    if (dropCfg.lore) waitingForClean.removeIf {
+        it.itemStack.itemMeta?.hasLore() == true
     }
 
     val items = mutableMapOf<String, MutableList<Item>>()
