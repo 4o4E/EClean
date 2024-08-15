@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.scheduler.BukkitTask
 import top.e404.eclean.PL
 import top.e404.eclean.config.Config
+import top.e404.eclean.config.Lang
 import top.e404.eclean.menu.MenuManager
 import top.e404.eclean.menu.trashcan.TrashInfo
 import top.e404.eclean.menu.trashcan.TrashcanMenu
@@ -23,6 +24,13 @@ object Trashcan : EListener(PL) {
     private val openTrash = mutableMapOf<Player, TrashcanMenu>()
 
     var task: BukkitTask? = null
+
+    fun cleanTrash(){
+        Config.plugin.debug { "清空垃圾桶" }
+        trashData.clear()
+        trashValues.clear()
+        PL.broadcastMsg(Lang["command.trash_clean_done"])
+    }
 
     /**
      * 垃圾桶清空倒计时, 单位秒
@@ -42,9 +50,7 @@ object Trashcan : EListener(PL) {
             countdown--
             if (countdown <= 0L) {
                 countdown = duration
-                Config.plugin.debug { "清空垃圾桶" }
-                trashData.clear()
-                trashValues.clear()
+                cleanTrash()
                 update()
             }
         }
