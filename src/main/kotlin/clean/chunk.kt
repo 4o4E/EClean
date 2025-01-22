@@ -28,7 +28,16 @@ fun cleanDenseEntities() {
         PL.debug { "密集实体清理已禁用" }
         return
     }
-    val worlds = Bukkit.getWorlds().filterNot { chunkCfg.disableWorld.contains(it.name) }
+
+    val worlds: List<World>
+    if (chunkCfg.worldBlack) {
+        PL.debug { "清理世界已开启黑名单" }
+        worlds = Bukkit.getWorlds().filter { chunkCfg.disableWorld.contains(it.name) }
+    } else {
+        PL.debug { "清理世界已开启白名单" }
+        worlds = Bukkit.getWorlds().filterNot { chunkCfg.disableWorld.contains(it.name) }
+    }
+
     PL.debug { "开始进行密集实体检查" }
     PL.debug {
         buildString {

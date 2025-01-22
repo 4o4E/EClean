@@ -28,7 +28,16 @@ fun cleanLiving() {
         PL.debug { "生物清理已禁用" }
         return
     }
-    val worlds = Bukkit.getWorlds().filterNot { livingCfg.disableWorld.contains(it.name) }
+
+    val worlds: List<World>
+    if (livingCfg.worldBlack) {
+        PL.debug { "清理世界已开启黑名单" }
+        worlds = Bukkit.getWorlds().filter { livingCfg.disableWorld.contains(it.name) }
+    } else {
+        PL.debug { "清理世界已开启白名单" }
+        worlds = Bukkit.getWorlds().filterNot { livingCfg.disableWorld.contains(it.name) }
+    }
+
     PL.buildDebug {
         append("开始清理生物, 启用生物清理的世界: [")
         worlds.joinTo(this, ", ", transform = World::getName)
@@ -40,6 +49,7 @@ fun cleanLiving() {
 
     var time = System.currentTimeMillis()
     val result = worlds.map { it.cleanLiving() }
+    worlds.map { it.cleanlivingWhitekey() }
     time = System.currentTimeMillis() - time
 
     lastLiving = result.sumOf { it.first }
@@ -117,5 +127,45 @@ fun World.cleanLiving(): Pair<Int, Int> {
         it.forEach(LivingEntity::remove)
     }
     PL.debug { "世界${name}生物清理完成($count/${total})" }
+    return count to total
+}
+/**
+ * 清理指定世界的生物
+ *
+ * @return Pair(clean, all)
+ */
+fun World.cleanlivingWhitekey(): Pair<Int, Int> {
+    val all = livingEntities.filterNot { it is Player }.toMutableList()
+    val total = all.size
+
+    PL.debug { "" }
+    PL.debug { "Whitekey: 开始清理世界${name}的生物" }
+    PL.buildDebug {
+        append("Whitekey: 所有实体共").append(total).append("个: [")
+        all.info().entries.joinTo(this, ", ") { (k, v) -> "$k: $v" }
+        append("]")
+    }
+
+    // 删除名称为空的生物(不清理)
+    if (livingCfg.whiteKey.isNotEmpty()) {
+        all.removeIf {
+            it.customName == null}
+        }
+    // 删除名称不为空并且不名称包含关键词生物(不清理)
+    if (livingCfg.whiteKey.isNotEmpty()) {
+        all.removeIf {
+            it.customName != null && livingCfg.whiteKey.none { key -> it.customName!!.contains(key) }
+        }
+    }
+
+    val groupBy = mutableMapOf<String, MutableList<LivingEntity>>()
+    for (entity in all) groupBy.getOrPut(entity.type.name) { mutableListOf() }.add(entity)
+
+    var count = 0
+    groupBy.values.forEach {
+        count += it.size
+        it.forEach(LivingEntity::remove)
+    }
+    PL.debug { "Whitekey: 世界${name}生物清理完成($count/${total})" }
     return count to total
 }

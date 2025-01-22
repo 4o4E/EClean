@@ -23,6 +23,10 @@ living:
   # 设置为true以启用
   enable: true
 
+  # 若设置为true则按黑名单匹配(名字匹配的才清理)
+  # 若设置为false则按白名单匹配(名字匹配的不清理)
+  worldBlack: true
+
   # 禁用的世界(不支持正则)
   disable_world:
     - "不清理的世界"
@@ -55,6 +59,10 @@ living:
     - "(GLOW_)?SQUID"
     - "PHANTOM"
     - "PILLAGER"
+
+  # 必定删除的生物名关键词
+  whiteKey:
+    - 'BOSS'
 
 # 清理掉落物
 drop:
@@ -106,7 +114,11 @@ chunk:
   # 设置为true以启用
   enable: true
 
-  # 禁用的世界(不支持正则)
+  # 若设置为true则按黑名单匹配(名字匹配的才清理)
+  # 若设置为false则按白名单匹配(名字匹配的不清理)
+  worldBlack: true
+
+  # 禁用/开启的世界(不支持正则)
   disable_world:
     - "不清理的世界"
 
