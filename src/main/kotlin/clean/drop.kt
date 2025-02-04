@@ -29,7 +29,7 @@ fun cleanDrop() {
         PL.debug { "掉落物清理已禁用" }
         return
     }
-    val worlds = Bukkit.getWorlds().filterNot { dropCfg.disableWorld.contains(it.name) }
+    val worlds = Bukkit.getWorlds().filterNot { dropCfg.disableWorld.any { regex -> it.name matches regex } }
     PL.buildDebug {
         append("开始清理掉落物, 启用掉落物清理的世界: [")
         worlds.joinTo(this, ", ", transform = World::getName)

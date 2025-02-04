@@ -28,7 +28,7 @@ fun cleanLiving() {
         PL.debug { "生物清理已禁用" }
         return
     }
-    val worlds = Bukkit.getWorlds().filterNot { livingCfg.disableWorld.contains(it.name) }
+    val worlds = Bukkit.getWorlds().filterNot { livingCfg.disableWorld.any { regex -> it.name matches regex } }
     PL.buildDebug {
         append("开始清理生物, 启用生物清理的世界: [")
         worlds.joinTo(this, ", ", transform = World::getName)

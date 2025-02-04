@@ -47,7 +47,7 @@ data class ConfigData(
 data class DropConfig(
     var enable: Boolean = true,
     @SerialName("disable_world")
-    var disableWorld: MutableList<String> = mutableListOf(),
+    var disableWorld: MutableList<@Serializable(RegexSerialization::class) Regex> = mutableListOf(),
     var finish: String = "",
     @SerialName("is_black")
     var black: Boolean = true,
@@ -61,7 +61,7 @@ data class DropConfig(
 data class LivingConfig(
     var enable: Boolean = true,
     @SerialName("disable_world")
-    var disableWorld: MutableList<String> = mutableListOf(),
+    var disableWorld: MutableList<@Serializable(RegexSerialization::class) Regex> = mutableListOf(),
     var finish: String = "",
     var settings: Settings = Settings(),
     @SerialName("is_black")
@@ -80,7 +80,7 @@ data class Settings(
 data class ChunkConfig(
     var enable: Boolean = true,
     @SerialName("disable_world")
-    var disableWorld: MutableList<String> = mutableListOf(),
+    var disableWorld: MutableList<@Serializable(RegexSerialization::class) Regex> = mutableListOf(),
     var finish: String = "",
     var settings: Settings = Settings(),
     var count: Int = 50,

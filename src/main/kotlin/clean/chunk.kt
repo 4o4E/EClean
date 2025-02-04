@@ -28,7 +28,7 @@ fun cleanDenseEntities() {
         PL.debug { "密集实体清理已禁用" }
         return
     }
-    val worlds = Bukkit.getWorlds().filterNot { chunkCfg.disableWorld.contains(it.name) }
+    val worlds = Bukkit.getWorlds().filterNot { chunkCfg.disableWorld.any { regex -> it.name matches regex } }
     PL.debug { "开始进行密集实体检查" }
     PL.debug {
         buildString {
