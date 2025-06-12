@@ -86,7 +86,7 @@ drop:
 
 
   # 掉落物类型(支持正则)
-  # https://hub.spigotmc.org/javadocs/spigot/org/bukkit/material/package-summary.html
+  # https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
   match:
     - "DIAMOND[A-Z_]*"
     - "NETHERITE[A-Z_]*"
