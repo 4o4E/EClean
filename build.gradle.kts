@@ -2,13 +2,13 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "2.1.0"
-    kotlin("plugin.serialization") version "2.1.0"
+    kotlin("jvm") version "2.1.21"
+    kotlin("plugin.serialization") version "2.1.21"
     id("com.gradleup.shadow") version "9.0.0-beta4"
 }
 
 group = "top.e404"
-version = "1.20.0"
+version = "1.20.1"
 val epluginVer = "1.4.0"
 
 fun eplugin(module: String, version: String = epluginVer) = "top.e404:eplugin-$module:$version"
@@ -40,7 +40,7 @@ dependencies {
     implementation("org.bstats:bstats-bukkit:3.0.2")
 
     // mock bukkit
-    testImplementation(kotlin("test", "2.1.0"))
+    testImplementation(kotlin("test", "2.1.21"))
     testImplementation("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
     testImplementation("com.github.seeseemelk:MockBukkit-v1.20:3.87.0")
     testImplementation("org.slf4j:slf4j-simple:2.0.13")
