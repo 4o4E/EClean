@@ -10,6 +10,7 @@ import top.e404.eclean.config.Config
 import top.e404.eclean.config.Lang
 import top.e404.eclean.hook.HookManager
 import top.e404.eclean.hook.PapiHook
+import top.e404.eclean.listener.DespawnListener
 import top.e404.eclean.menu.MenuManager
 import top.e404.eclean.papi.Papi
 import top.e404.eclean.update.Update
@@ -62,6 +63,7 @@ open class EClean : EPlugin {
         Clean.schedule()
         HookManager.register()
         MenuManager.register()
+        DespawnListener.register()
         Trashcan.register()
         if (PapiHook.enable) Papi.register()
         for (line in logo) info(line)

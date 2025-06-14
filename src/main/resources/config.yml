@@ -152,6 +152,29 @@ trashcan:
   collect: true
   # 清空垃圾桶的时间间隔, 单位秒, 设置为空则不会主动清理(可能导致内存泄露占用大量内存)
   duration: 6000
+  despawn:
+    # 设置为true则回收despawn的物品
+    enable: false
+    # 禁用的世界(支持正则)
+    disable_world:
+      - "不回收的世界"
+    # 放入垃圾桶的掉落物类型(支持正则) 可以设置如下格式回收所有物品
+    # match:
+    #   - .*
+    # https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+    match:
+      - "DIAMOND[A-Z_]*"
+      - "NETHERITE[A-Z_]*"
+      - "[A-Z_]*SHULKER_BOX"
+      - "[A-Z_]*(HEAD|SKULL)"
+      - "SHULKER_SHELL"
+      - "BEACON"
+      - "(ENCHANTED_)?GOLDEN_APPLE"
+      - "TRIDENT"
+      - "TOTEM_OF_UNDYING"
+      - "ENDER_CHEST"
+      - "DRAGON_EGG"
+      - "ELYTRA"
 
 # 无在线玩家时的配置
 no_online:

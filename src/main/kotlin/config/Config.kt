@@ -94,6 +94,15 @@ data class TrashcanConfig(
     var enable: Boolean = true,
     var collect: Boolean = true,
     var duration: Long? = 6000,
+    var despawn: DespawnConfig = DespawnConfig(),
+)
+
+@Serializable
+data class DespawnConfig(
+    var enable: Boolean = false,
+    @SerialName("disable_world")
+    var disableWorlds: MutableList<@Serializable(RegexSerialization::class) Regex> = mutableListOf(),
+    var match: MutableList<@Serializable(RegexSerialization::class) Regex> = mutableListOf(),
 )
 
 @Serializable
